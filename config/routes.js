@@ -28,6 +28,7 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
   'GET /login': {view: 'pages/login'},
+  'POST /login': {action: 'login'}
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

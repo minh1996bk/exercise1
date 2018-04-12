@@ -7,7 +7,7 @@ module.exports = async function doLogin(req, res) {
             message: 'invalid username'
         })
     }
-    let bcrypt = require('bcrypt');
+    // let bcrypt = require('bcrypt');
     try {
         let user = await Admin.findOne({
             username: username
@@ -17,7 +17,8 @@ module.exports = async function doLogin(req, res) {
                 message: 'username not exists'
             })
         }
-        let result = await bcrypt.compare(password, user.password);
+        // let result = await bcrypt.compare(password, user.password);
+        let result = user.password == password;
         if (result) {
             req.session.userId = user.id;
             return res.json({

@@ -24,6 +24,7 @@ module.exports = async function doLogin(req, res) {
             })
         }
     } catch (err) {
+        console.log(err);
         return res.status(500).send(err);
     }
 }

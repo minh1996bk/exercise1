@@ -1,3 +1,68 @@
+<!DOCTYPE html>
 <html>
-<title>Student List</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" width="device-width" initial-scale="1">
+	<title>Danh sach sinh vien</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+</head>
+<body>
+	<div id="main">
+		<header><h2>Hệ thống quản lý sinh viên</h2></header><!-- endheader -->
+		<div id="content">
+			<div id="top">
+				<span>Danh sách sinh viên</span>
+				<button type="" name="btnthem" id="btnthem">Thêm sinh viên mới</button>
+			</div>
+			<div id="middle">
+				
+				<button type="" name="btntk" id="btntk">Tìm</button>
+				<input type="text" name="tk" id="tk" placeholder="Tìm theo tên, mã sinh viên..">
+				<table>
+					<caption>Danh sách sinh viên</caption>
+					<thead>
+						<tr>
+							<th>Mã sv</th>
+							<th>Họ tên</th>
+							<th>Ngày sinh</th>
+							<th>Giới tính</th>
+							<th>Địa chỉ</th>
+						</tr>
+					</thead>
+					<tbody>
+                        <%students.forEach(function(student) {%>
+                            <tr>
+                                <td><%=student.mssv%></td>
+                                <td><%=student.name%></td>
+                                <td><%=student.gender%></td>
+                                <td><%=student.dateOfBirth%></td>
+                                <td><%=student.address%></td>
+                                
+                            </tr>
+                        <%})%>
+					</tbody>
+				</table>
+				<div class="page-number">
+					<ul  >
+					  <li><a href="#"><<</a></li>
+					  <li> <a href="#">1</a></li>
+					  <li> <a href="#">2</a></li>
+					  <li> <a href="#">3</a></li>
+					  <li> <a href="#">4</a></li>
+					  <li><a href="#">5</a></li>
+					  <li> <a href="#">6</a></li>
+					  <li> <a href="#">7</a></li>
+					  <li> <a href="#">8</a></li>
+					  <li> <a href="#">9</a></li>
+					  <li><a href="#" ">>></a></li>
+					</ul>
+				</div>
+				
+			</div><!-- endmiddle -->
+		</div><!-- endcontent -->
+		<footer></footer><!-- endfooter -->
+	</div><!-- endmain -->
+	
+</body>
 </html>

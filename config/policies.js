@@ -18,6 +18,6 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': true,
-  'students': 'is-login'
+  // 'students': 'is-login'
 
 };

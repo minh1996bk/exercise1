@@ -1,0 +1,88 @@
+#main{
+	width: 1000px;
+	margin: 0 auto;
+	background:#dcdcdc;
+}
+header{
+	max-height: 100px;
+	background-color: #0b577a;
+	color: #fff;
+}
+header h2{
+	margin: 0;
+	padding: 5px 15px;}
+#top {
+	    height: 40px;
+}
+#top span{
+	margin: 0;
+	padding: 5px 15px;
+	color: #212dcc;
+	font-size: 1.3em
+
+}
+#top button{
+	color: #fff;
+	
+	float: right;
+	background: #558fab;
+	border-radius: 5px;
+	font-weight: bold;
+	}
+button:hover{
+	opacity: 0.7
+}
+#middle{
+	width: 100%;
+	border: 1px solid blue;
+	border-radius: 8px;
+	height: 500px;
+	background: #fff;
+	
+}
+#middle input,button{
+	float: right;
+	border-radius: 5px;
+	padding: 7px;
+	font-weight: bold;
+	margin: 2px;
+}
+#middle button{
+	color: #fff;
+	background: #558fab;
+	border-radius: 5px ;
+	font-weight: bold;
+	padding: 7px;
+	width: 75px;
+}
+table,th, tr, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+
+}
+table{
+	margin: 0 auto;
+	width: 90%;
+	background-color: blue;
+}
+.page-number{
+    text-align: center;
+    padding: 10px;
+}
+.page-number ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.page-number ul li{ display: inline-block; }
+.page-number ul li a{
+    display: block;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid #ccc;
+}
+.page-number ul li a:hover{
+    background: #eee;
+}

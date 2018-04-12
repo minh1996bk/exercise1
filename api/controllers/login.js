@@ -1,7 +1,12 @@
 module.exports = async function doLogin(req, res) {
     let username = req.body.username;
     let password = req.body.password;
-
+    let checkUsername = await sails.helpers.validateQuery(username);
+    if (!checkUsername) {
+        return res.json({
+            message: 'invalid username'
+        })
+    }
     let bcrypt = require('bcrypt');
     try {
         let user = await Admin.findOne({

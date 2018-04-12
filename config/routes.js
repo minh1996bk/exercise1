@@ -24,12 +24,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'pages/homepage'
-  },
+  'GET /': {view: 'pages/homepage'},
   'GET /login': {view: 'pages/login'}, 
   'GET /register': {view: 'pages/register'},
-
+ 
   'POST /login': {action: 'login'},
   'POST /register': {action: 'register'},
   /***************************************************************************

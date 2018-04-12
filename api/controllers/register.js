@@ -6,9 +6,9 @@ module.exports = async function doRegister(req, res) {
 
     let hashPassword = await bcrypt.hash(password, 10);
 
-    let admin =  Admin.create({
+    let admin =  await Admin.create({
         username: username,
-        password: password
+        password: hashPassword
     })
     .fetch();
 

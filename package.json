@@ -10,7 +10,6 @@
     "@sailshq/socket.io-redis": "^5.2.0",
     "accessible": "^0.1.0",
     "async": "^2.0.1",
-    "bcrypt": "^2.0.0",
     "coffeescript": "^2.2.4",
     "load-grunt-tasks": "^3.5.2",
     "lodash": "^4.17.5",
@@ -22,7 +21,7 @@
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.2",
     "grunt-sails-linker": "^1.0.4"
   },
   "scripts": {

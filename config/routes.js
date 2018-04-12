@@ -27,9 +27,11 @@ module.exports.routes = {
   'GET /': {view: 'pages/homepage'},
   'GET /login': {view: 'pages/login'}, 
   'GET /register': {view: 'pages/register'},
+  'GET /students': {action: 'getStudents'},
  
   'POST /login': {action: 'login'},
   'POST /register': {action: 'register'},
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

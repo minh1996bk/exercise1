@@ -17,22 +17,21 @@ module.exports = {
             dateOfBirth: _dateOfBirth,
             gender: _gender,
             address: _address
-        })
-        .fetch();
-        if (student) {
-            res.status(200).json({
-                message: "OK"
-            })
-        } else {
-            res.status(500).json({
-                message: "Fail"
-            })
-        }
+        });
+        res.ok();
     },
-    put: function updateStudent(req, res) {
-        
+    put: async function updateStudent(req, res) {
+        await Student.update({'id': studentId})
+        .set({
+            name: req.body.name,
+            dateOfBirth: req.body.dateOfBirth,
+            gender: req.body.gender,
+            address: req.body.address
+        });
+        res.ok();
     },
-    delete:  function deleteStudent(req, res) {
-        
+    delete: async function deleteStudent(req, res) {
+        await Student.destroy({'id': req.body.studentId});
+        res.ok();
     }
 }

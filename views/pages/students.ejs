@@ -34,9 +34,9 @@
                         <%students.forEach(function(student) {%>
                             <tr>
                                 <td><%=student.mssv%></td>
-                                <td><%=student.name%></td>
-                                <td><%=student.gender%></td>
+                                <td><a href="/student/<%=student.id%>"><%=student.name%></a></td>
                                 <td><%=student.dateOfBirth%></td>
+                                <td><%=student.gender%></td>
                                 <td><%=student.address%></td>
                                 
                             </tr>
@@ -44,18 +44,17 @@
 					</tbody>
 				</table>
 				<div class="page-number">
-					<ul  >
-					  <li><a href="#"><<</a></li>
-					  <li> <a href="#">1</a></li>
-					  <li> <a href="#">2</a></li>
-					  <li> <a href="#">3</a></li>
-					  <li> <a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li> <a href="#">6</a></li>
-					  <li> <a href="#">7</a></li>
-					  <li> <a href="#">8</a></li>
-					  <li> <a href="#">9</a></li>
-					  <li><a href="#" ">>></a></li>
+					<ul>
+					  <li><a href="/students?page_number=1&record_count=<%=record_count%>">First</a></li>
+					  <li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>"><<</a></li>
+					 
+					
+					  <%for (let i = 0; i < 10; i ++) {%>
+						<li><a href="/students?page_number=<%=start + i%>&record_count=<%=record_count%>"><%= start + i%></a></li>
+					  <%}%>
+
+					  <li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>">>></a></li>
+					  <li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>">Last</a></li>
 					</ul>
 				</div>
 				

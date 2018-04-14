@@ -21,7 +21,7 @@ module.exports = {
         res.ok();
     },
     put: async function updateStudent(req, res) {
-        await Student.update({'id': studentId})
+        await Student.update({'mssv': req.body.mssv})
         .set({
             name: req.body.name,
             dateOfBirth: req.body.dateOfBirth,
@@ -31,7 +31,14 @@ module.exports = {
         res.ok();
     },
     delete: async function deleteStudent(req, res) {
-        await Student.destroy({'id': req.body.studentId});
+        await Student.destroy({'mssv': req.body.mssv});
         res.ok();
+    },
+
+    getAddStudentPage: async function getAddStudentPage(req, res) {
+        res.view('pages/add-student', {
+            current_page: req.query.page_number,
+            record_count: req.query.record_count
+        });
     }
 }

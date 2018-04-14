@@ -1,0 +1,14 @@
+<h3>Hệ thống quản lý sinh viên</h3>
+<hr>
+<h4>Sửa thông tinh sinh viên</h4>
+<div>
+    <form action="/update-student" method="POST">
+        <input type="text" name="mssv" value="<%=student.mssv%>" readonly>
+        <input type="text" name="name" value="<%=student.name%>" required>
+        <input type="text" name="dateOfBirth" value="<%=student.dateOfBirth%>" required>
+        <input type="text" name="gender" value="<%=student.gender%>" required>
+        <input type="text" name="address" value="<%=student.address%>" required>
+        <input type="button" value="Xóa">
+        <input type="submit" value="Sửa">
+    </form>
+</div>

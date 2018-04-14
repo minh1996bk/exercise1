@@ -28,15 +28,14 @@ module.exports.routes = {
   'GET /login': {view: 'pages/login'}, 
   'GET /register': {view: 'pages/register'},
   'GET /students': {action: 'students'},
-  'GET /add-student': {view: 'pages/add-student'},
-  'GET /update-student': {view: 'pages/update-student'},
+  'GET /add-student': 'StudentController.getAddStudentPage',
   'POST /login': {action: 'login'},
   'POST /register': {action: 'register'},
 
   'GET /student/:studentId': 'StudentController.get',
   'POST /student': 'StudentController.post',
-  'DELETE /student': 'StudentController.delete',
-  'PUT /student': 'StudentController.put',
+  'POST /delete-student': 'StudentController.delete',
+  'POST /update-student': 'StudentController.put',
 
   /***************************************************************************
   *                                                                          *

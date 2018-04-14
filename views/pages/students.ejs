@@ -17,8 +17,12 @@
 			</div>
 			<div id="middle">
 				
-				<button type="" name="btntk" id="btntk">Tìm</button>
-				<input type="text" name="tk" id="tk" placeholder="Tìm theo tên, mã sinh viên..">
+				<div>
+					<form action="/search-student" method="GET">
+						<button type="submit" name="btntk" id="btntk">Tìm</button>
+						<input type="text" name="tk" id="tk" placeholder="Tìm theo tên, mã sinh viên..">
+					</form>
+				</div>
 				<table>
 					<caption>Danh sách sinh viên</caption>
 					<thead>

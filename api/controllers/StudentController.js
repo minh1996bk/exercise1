@@ -12,12 +12,20 @@ module.exports = {
         let _address = req.body.address;
 
         if (_mssv.length != 8) {
-            return  res.view('pages/add-student', {
-                current_page: 1,
-                record_count: 10,
+            req.session.errors = {
                 mssvError: "Mssv phai co dung 8 ki tu"
-            });
+            };
+            return res.redirect('add-student');
         }
+
+        let regexp = /[A-Za-z]/;
+        if (!regexp.test(_name)) {
+            req.session.errors = {
+                nameError: "Ten chi chua ki tu"
+            };
+            return res.redirect('add-student');
+        }
+
         let student = await Student.create({
             mssv: _mssv,
             name: _name,
@@ -25,7 +33,8 @@ module.exports = {
             gender: _gender,
             address: _address
         });
-        res.ok();
+        req.session.success = true;
+        res.redirect('add-student');
     },
     put: async function updateStudent(req, res) {
         await Student.update({'mssv': req.body.mssv})
@@ -40,5 +49,17 @@ module.exports = {
     delete: async function deleteStudent(req, res) {
         await Student.destroy({'mssv': req.body.mssv});
         res.ok();
+    },
+
+    getAddPage: async function getAddPage(req, res) {
+    
+        let errors = req.session.errors;
+        let success = req.session.success;
+        delete req.session.errors;
+        delete req.session.success;
+        return res.view('pages/add-student', {
+            errors: errors,
+            success: success
+        });
     }
 }

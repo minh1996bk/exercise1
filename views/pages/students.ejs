@@ -13,7 +13,7 @@
 		<div id="content">
 			<div id="top">
 				<span>Danh sách sinh viên</span>
-				<button type="" name="btnthem" id="btnthem"><a href="/add-student/?page_number=<%=current_page%>&record_count=<%=record_count%>">Thêm sinh viên mới</a></button>
+				<button type="" name="btnthem" id="btnthem"><a href="/add-student">Thêm sinh viên mới</a></button>
 			</div>
 			<div id="middle">
 				
@@ -53,8 +53,8 @@
 					  <li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>"><<</a></li>
 					 
 					
-					  <%for (let i = 0; i < 10; i ++) {%>
-						<li><a href="/students?page_number=<%=start + i%>&record_count=<%=record_count%>"><%= start + i%></a></li>
+					  <%for (let i = start; i <= end; i ++) {%>
+						<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>"><%=i%></a></li>
 					  <%}%>
 
 					  <li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>">>></a></li>

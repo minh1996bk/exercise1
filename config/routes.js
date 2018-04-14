@@ -28,7 +28,7 @@ module.exports.routes = {
   'GET /login': {view: 'pages/login'}, 
   'GET /register': {view: 'pages/register'},
   'GET /students': {action: 'students'},
-  'GET /add-student': 'StudentController.getAddStudentPage',
+  'GET /add-student': {view: 'pages/add-student'},
   'POST /login': {action: 'login'},
   'POST /register': {action: 'register'},
 

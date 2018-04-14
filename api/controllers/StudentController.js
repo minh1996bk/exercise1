@@ -11,6 +11,13 @@ module.exports = {
         let _gender = req.body.gender;
         let _address = req.body.address;
 
+        if (_mssv.length != 8) {
+            return  res.view('pages/add-student', {
+                current_page: 1,
+                record_count: 10,
+                mssvError: "Mssv phai co dung 8 ki tu"
+            });
+        }
         let student = await Student.create({
             mssv: _mssv,
             name: _name,
@@ -33,12 +40,5 @@ module.exports = {
     delete: async function deleteStudent(req, res) {
         await Student.destroy({'mssv': req.body.mssv});
         res.ok();
-    },
-
-    getAddStudentPage: async function getAddStudentPage(req, res) {
-        res.view('pages/add-student', {
-            current_page: req.query.page_number,
-            record_count: req.query.record_count
-        });
     }
 }

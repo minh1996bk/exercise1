@@ -138,8 +138,9 @@ module.exports = {
         return res.redirect('student/' + _mssv);
     },
     deleteStudent: async function deleteStudent(req, res) {
-        await Student.destroy({'mssv': req.body.mssv});
-        res.redirect('students');
+        let mssv = req.body.mssv;
+        await Student.destroy({'mssv': mssv});
+        return res.redirect('students');
     },
 
     getStudents: async function getStudents(req, res) {
@@ -161,7 +162,9 @@ module.exports = {
     
         let results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
         let _last = Math.ceil((await Student.count({})) / recordCount);
-    
+        if (_last == 0) {
+            _last = 1;
+        }
         let _start = Math.floor((pageNumber - 1) / 10) * 10 + 1;
         let _end = _start + 10 < _last ? _start + 10 : _last; 
         let _prev = pageNumber - 1 > 0 ? pageNumber - 1 : 1;

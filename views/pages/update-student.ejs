@@ -26,7 +26,7 @@
         <%if(typeof errors !== 'undefined' && errors.addressError) {%>
             <p><%=errors.addressError%></p>
         <%}%>
-        <button><a href="/get-delete-page?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button>
+        <button><a href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button>
         <input type="submit" value="Sửa">
     </form>
 </div>

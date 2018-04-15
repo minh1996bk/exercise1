@@ -49,4 +49,6 @@ module.exports.globals = {
 
   sails: true,
 
+  validate: require('validate.js'),
+
 };

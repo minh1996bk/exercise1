@@ -10,7 +10,15 @@ module.exports = {
         let _dateOfBirth = req.body.dateOfBirth;
         let _gender = req.body.gender;
         let _address = req.body.address;
-
+        
+        let studentConstraint = {
+            mssv: {
+                format: {
+                    pattern: /^{,8}.*$/,
+                    message: "Name sai"
+                }
+            }
+        }
         if (_mssv.length != 8) {
             req.session.errors = {
                 mssvError: "Mssv phai co dung 8 ki tu"
@@ -49,6 +57,45 @@ module.exports = {
     deleteStudent: async function deleteStudent(req, res) {
         await Student.destroy({'mssv': req.body.mssv});
         res.ok();
+    },
+
+    getStudents: async function getStudents(req, res) {
+        let pageNumber;
+        let recordCount
+    
+        if (!req.query.page_number) {
+            if (req.session.currentPage) {
+                pageNumber = req.session.currentPage;
+                recordCount = req.session.recordCount;
+            } else {
+                pageNumber = 1;
+                recordCount = 10;
+            }
+        } else {
+            pageNumber = parseInt(req.query.page_number);
+            recordCount = parseInt(req.query.record_count);
+        }
+    
+        let results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
+        let _last = Math.ceil((await Student.count({})) / recordCount);
+    
+        let _start = Math.floor((pageNumber - 1) / 10) * 10 + 1;
+        let _end = _start + 10 < _last ? _start + 10 : _last; 
+        let _prev = pageNumber - 1 > 0 ? pageNumber - 1 : 1;
+        let _next = pageNumber + 1 < _last ? pageNumber + 1 : _last;
+    
+        req.session.currentPage = pageNumber;
+        req.session.recordCount = recordCount;
+        res.view('pages/students', {
+            students: results,
+            record_count: recordCount,
+            start: _start,
+            end: _end,
+            current_page: pageNumber,
+            prev: _prev,
+            next: _next,
+            last: _last
+        });
     },
 
     getAddPage: async function getAddPage(req, res) {

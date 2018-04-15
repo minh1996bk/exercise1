@@ -25,23 +25,50 @@ module.exports = {
         let studentConstraint = {
             mssv: {
                presence: true,
-               
+               format: {
+                   pattern: /^\d{8}$/,
+                   message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                       return "MSSV chi chua so va co do dai la 8"
+                   }
+               }
             },
             name: {
                 presence: true,
+                format: {
+                    pattern: /[A-Za-z]/,
+                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                        return "Ten sinh vien chi chua ky tu trong bang chu cai";
+                    }
+                }
             
             },
             dateOfBirth: {
                 presence: true,
+                format: {
+                    pattern: /\d\d\/\d\d\/\d\d\d\d/,
+                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                        return "Ngay sinh co dang dd/mm/yyyy";
+                    }
+                }
         
             },
             gender: {
                 presence: true,
-                
+                format: {
+                    pattern: /Nam|Nu/,
+                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                        return "Gioi tinh Nam hoac Nu";
+                    }
+                }
             },
             address: {
                 presence: true,
-                
+                format: {
+                    pattern: /[A-Za-z]/,
+                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                        return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
+                    }
+                }
             }
         }
         let student = {
@@ -83,25 +110,52 @@ module.exports = {
         
         let studentConstraint = {
             mssv: {
-               presence: true,
-               
-            },
-            name: {
                 presence: true,
-                
-            },
-            dateOfBirth: {
-                presence: true,
-                
-            },
-            gender: {
-                presence: true,
-                
-            },
-            address: {
-                presence: true,
-                
-            }
+                format: {
+                    pattern: /^\d{8}$/,
+                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                        return "MSSV chi chua so va co do dai la 8"
+                    }
+                }
+             },
+             name: {
+                 presence: true,
+                 format: {
+                     pattern: /[A-Za-z]/,
+                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                         return "Ten sinh vien chi chua ky tu trong bang chu cai";
+                     }
+                 }
+             
+             },
+             dateOfBirth: {
+                 presence: true,
+                 format: {
+                     pattern: /\d\d\/\d\d\/\d\d\d\d/,
+                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                         return "Ngay sinh co dang dd/mm/yyyy";
+                     }
+                 }
+         
+             },
+             gender: {
+                 presence: true,
+                 format: {
+                     pattern: /Nam|Nu/,
+                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                         return "Gioi tinh Nam hoac Nu";
+                     }
+                 }
+             },
+             address: {
+                 presence: true,
+                 format: {
+                     pattern: /[A-Za-z]/,
+                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
+                         return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
+                     }
+                 }
+             }
         }
         let student = {
             mssv: _mssv,
@@ -162,13 +216,12 @@ module.exports = {
     
         let results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
         let totalStudentCount = await Student.count({});
-        let currentStudentCount = pageNumber * recordCount;
+        let currentStudentCount = pageNumber * recordCount <= totalStudentCount ? pageNumber * recordCount : totalStudentCount;
         let _last = Math.ceil((totalStudentCount) / recordCount);
         if (_last == 0) {
             _last = 1;
         }
         let _start;
-        // let _start = Math.floor((pageNumber - 1) / 10) * 10 + 1;
         _start = pageNumber - 5 > 0 ? pageNumber - 5 : 1;
         _start = _start + 9 < _last ? _start : (_last - 9 > 0 ? _last - 9 : 1);
         let _end = _start + 9 < _last ? _start + 9 : _last; 

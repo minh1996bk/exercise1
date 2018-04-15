@@ -19,7 +19,8 @@
         <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
             <p><%=errors.dateOfBirthError%></p>
         <%}%>
-        <input type="text" name="gender" placeholder="Nhập vào giới tính" required>
+        <input type="radio" name="gender" value="Nam" checked>
+        <input type="radio" name="gender" value="Nu">
         <%if(typeof errors !== 'undefined' && errors.genderError) {%>
             <p><%=errors.genderError%></p>
         <%}%>

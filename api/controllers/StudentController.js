@@ -161,12 +161,17 @@ module.exports = {
         }
     
         let results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
-        let _last = Math.ceil((await Student.count({})) / recordCount);
+        let totalStudentCount = await Student.count({});
+        let currentStudentCount = pageNumber * recordCount;
+        let _last = Math.ceil((totalStudentCount) / recordCount);
         if (_last == 0) {
             _last = 1;
         }
-        let _start = Math.floor((pageNumber - 1) / 10) * 10 + 1;
-        let _end = _start + 10 < _last ? _start + 10 : _last; 
+        let _start;
+        // let _start = Math.floor((pageNumber - 1) / 10) * 10 + 1;
+        _start = pageNumber - 5 > 0 ? pageNumber - 5 : 1;
+        _start = _start + 9 < _last ? _start : _last - 9;
+        let _end = _start + 9 < _last ? _start + 9 : _last; 
         let _prev = pageNumber - 1 > 0 ? pageNumber - 1 : 1;
         let _next = pageNumber + 1 < _last ? pageNumber + 1 : _last;
     
@@ -180,7 +185,9 @@ module.exports = {
             current_page: pageNumber,
             prev: _prev,
             next: _next,
-            last: _last
+            last: _last,
+            totalStudentCount: totalStudentCount,
+            currentStudentCount: currentStudentCount
         });
     },
 

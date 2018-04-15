@@ -1,10 +1,10 @@
 module.exports = {
-    get: async function getStudent(req, res) {
+    getStudent: async function getStudent(req, res) {
         let studentId = req.params.studentId;
         let student = await Student.findOne({'id': studentId});
         res.view('pages/update-student', {student: student});
     },
-    post: async function addStudent(req, res) {
+    addStudent: async function addStudent(req, res) {
         let _mssv = req.body.mssv;
         let _name = req.body.name;
         let _dateOfBirth = req.body.dateOfBirth;
@@ -36,7 +36,7 @@ module.exports = {
         req.session.success = true;
         res.redirect('add-student');
     },
-    put: async function updateStudent(req, res) {
+    updateStudent: async function updateStudent(req, res) {
         await Student.update({'mssv': req.body.mssv})
         .set({
             name: req.body.name,
@@ -46,7 +46,7 @@ module.exports = {
         });
         res.ok();
     },
-    delete: async function deleteStudent(req, res) {
+    deleteStudent: async function deleteStudent(req, res) {
         await Student.destroy({'mssv': req.body.mssv});
         res.ok();
     },

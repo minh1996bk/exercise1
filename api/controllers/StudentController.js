@@ -4,6 +4,7 @@ module.exports = {
         let student = await Student.findOne({'id': studentId});
         res.view('pages/update-student', {student: student});
     },
+    
     addStudent: async function addStudent(req, res) {
         let _mssv = req.body.mssv;
         let _name = req.body.name;
@@ -13,34 +14,45 @@ module.exports = {
         
         let studentConstraint = {
             mssv: {
-                format: {
-                    pattern: /^{,8}.*$/,
-                    message: "Name sai"
-                }
+               
+            },
+            name: {
+
+            },
+            dateOfBirth: {
+
+            },
+            gender: {
+
+            },
+            address: {
+
             }
         }
-        if (_mssv.length != 8) {
-            req.session.errors = {
-                mssvError: "Mssv phai co dung 8 ki tu"
-            };
-            return res.redirect('add-student');
-        }
-
-        let regexp = /[A-Za-z]/;
-        if (!regexp.test(_name)) {
-            req.session.errors = {
-                nameError: "Ten chi chua ki tu"
-            };
-            return res.redirect('add-student');
-        }
-
-        let student = await Student.create({
+        let student = {
             mssv: _mssv,
             name: _name,
             dateOfBirth: _dateOfBirth,
             gender: _gender,
             address: _address
-        });
+        }
+
+        let testResult = validate(student, studentConstraint);
+        if (!testResult) {
+
+            let errors = req.session.errors;
+
+            errors.mssvError = testResult.mssv;
+            errors.nameError = testResult.name;
+            errors.dateOfBirthError = testResult.dateOfBirth;
+            errors.genderError = testResult.gender;
+            errors.addressError = testResult.address;
+            
+            return res.redirect('add-student');
+        }
+
+       await Student.create(student);
+       
         req.session.success = true;
         res.redirect('add-student');
     },

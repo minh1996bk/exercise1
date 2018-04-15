@@ -47,6 +47,7 @@
 
 config/local.js
 config/datastores.js    
+test
 
 
 ################################################

@@ -139,7 +139,7 @@ module.exports = {
     },
     deleteStudent: async function deleteStudent(req, res) {
         await Student.destroy({'mssv': req.body.mssv});
-        res.ok();
+        res.redirect('students');
     },
 
     getStudents: async function getStudents(req, res) {
@@ -191,5 +191,15 @@ module.exports = {
             errors: errors,
             success: success
         });
+    },
+
+    getDeletePage: async function getDeletePage(req, res) {
+        let mssv = req.query.mssv;
+        let name = req.query.name;
+
+        return res.view('pages/delete-student', {
+            mssv: mssv,
+            name: name
+        })
     }
 }

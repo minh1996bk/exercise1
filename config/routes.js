@@ -36,6 +36,7 @@ module.exports.routes = {
   'POST /update-student': 'StudentController.updateStudent',
   'GET /add-student': 'StudentController.getAddPage',
   'GET /students': 'StudentController.getStudents',
+  'GET /delete-student': 'StudentController.getDeletePage',
 
   /***************************************************************************
   *                                                                          *

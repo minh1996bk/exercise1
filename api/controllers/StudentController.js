@@ -25,23 +25,23 @@ module.exports = {
         let studentConstraint = {
             mssv: {
                presence: true,
-               length: {is: 8}
+               
             },
             name: {
                 presence: true,
-                length: {is: 8}
+            
             },
             dateOfBirth: {
                 presence: true,
-                length: {is: 8}
+        
             },
             gender: {
                 presence: true,
-                length: {is: 8}
+                
             },
             address: {
                 presence: true,
-                length: {is: 8}
+                
             }
         }
         let student = {
@@ -84,23 +84,23 @@ module.exports = {
         let studentConstraint = {
             mssv: {
                presence: true,
-               length: {is: 8}
+               
             },
             name: {
                 presence: true,
-                length: {is: 8}
+                
             },
             dateOfBirth: {
                 presence: true,
-                length: {is: 8}
+                
             },
             gender: {
                 presence: true,
-                length: {is: 8}
+                
             },
             address: {
                 presence: true,
-                length: {is: 8}
+                
             }
         }
         let student = {

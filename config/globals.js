@@ -49,6 +49,6 @@ module.exports.globals = {
 
   sails: true,
 
-  validate: require('validate.js'),
+  Validator: require('validate.js'),
 
 };

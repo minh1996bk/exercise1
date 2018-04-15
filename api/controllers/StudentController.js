@@ -1,11 +1,21 @@
 module.exports = {
     getStudent: async function getStudent(req, res) {
-        let studentId = req.params.studentId;
-        let student = await Student.findOne({'id': studentId});
-        res.view('pages/update-student', {student: student});
+        let errors = req.session.errors;
+        let success = req.session.success;
+        delete req.session.errors;
+        delete req.session.success;
+
+        let mssv = req.params.mssv;
+        let student = await Student.findOne({'mssv': mssv});
+        res.view('pages/update-student', {
+            student: student,
+            errors: errors,
+            success: success
+        });
     },
     
     addStudent: async function addStudent(req, res) {
+        const Validator = require('validate.js');
         let _mssv = req.body.mssv;
         let _name = req.body.name;
         let _dateOfBirth = req.body.dateOfBirth;
@@ -14,19 +24,24 @@ module.exports = {
         
         let studentConstraint = {
             mssv: {
-               
+               presence: true,
+               length: {is: 8}
             },
             name: {
-
+                presence: true,
+                length: {is: 8}
             },
             dateOfBirth: {
-
+                presence: true,
+                length: {is: 8}
             },
             gender: {
-
+                presence: true,
+                length: {is: 8}
             },
             address: {
-
+                presence: true,
+                length: {is: 8}
             }
         }
         let student = {
@@ -37,34 +52,90 @@ module.exports = {
             address: _address
         }
 
-        let testResult = validate(student, studentConstraint);
-        if (!testResult) {
+        let testResult = Validator(student, studentConstraint);
 
-            let errors = req.session.errors;
+        if (testResult) {
 
+            let errors = {};
             errors.mssvError = testResult.mssv;
             errors.nameError = testResult.name;
             errors.dateOfBirthError = testResult.dateOfBirth;
             errors.genderError = testResult.gender;
             errors.addressError = testResult.address;
             
+            req.session.errors = errors;
+
             return res.redirect('add-student');
         }
 
        await Student.create(student);
-       
+
         req.session.success = true;
         res.redirect('add-student');
     },
     updateStudent: async function updateStudent(req, res) {
-        await Student.update({'mssv': req.body.mssv})
+        const Validator = require('validate.js');
+        let _mssv = req.body.mssv;
+        let _name = req.body.name;
+        let _dateOfBirth = req.body.dateOfBirth;
+        let _gender = req.body.gender;
+        let _address = req.body.address;
+        
+        let studentConstraint = {
+            mssv: {
+               presence: true,
+               length: {is: 8}
+            },
+            name: {
+                presence: true,
+                length: {is: 8}
+            },
+            dateOfBirth: {
+                presence: true,
+                length: {is: 8}
+            },
+            gender: {
+                presence: true,
+                length: {is: 8}
+            },
+            address: {
+                presence: true,
+                length: {is: 8}
+            }
+        }
+        let student = {
+            mssv: _mssv,
+            name: _name,
+            dateOfBirth: _dateOfBirth,
+            gender: _gender,
+            address: _address
+        }
+
+        let testResult = Validator(student, studentConstraint);
+
+        if (testResult) {
+
+            let errors = {};
+            errors.mssvError = testResult.mssv;
+            errors.nameError = testResult.name;
+            errors.dateOfBirthError = testResult.dateOfBirth;
+            errors.genderError = testResult.gender;
+            errors.addressError = testResult.address;
+            
+            req.session.errors = errors;
+
+            return res.redirect('student/' + _mssv);
+        }
+
+
+        await Student.update({'mssv': _mssv})
         .set({
-            name: req.body.name,
-            dateOfBirth: req.body.dateOfBirth,
-            gender: req.body.gender,
-            address: req.body.address
+            name: _name,
+            dateOfBirth: _dateOfBirth,
+            gender: _gender,
+            address: _address
         });
-        res.ok();
+        return res.redirect('student/' + _mssv);
     },
     deleteStudent: async function deleteStudent(req, res) {
         await Student.destroy({'mssv': req.body.mssv});

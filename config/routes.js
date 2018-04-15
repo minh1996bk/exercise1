@@ -30,7 +30,7 @@ module.exports.routes = {
   'POST /login': {action: 'login'},
   'POST /register': {action: 'register'},
 
-  'GET /student/:studentId': 'StudentController.getStudent',
+  'GET /student/:mssv': 'StudentController.getStudent',
   'POST /student': 'StudentController.addStudent',
   'POST /delete-student': 'StudentController.deleteStudent',
   'POST /update-student': 'StudentController.updateStudent',

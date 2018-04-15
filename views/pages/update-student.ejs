@@ -1,27 +1,30 @@
 <h3>Hệ thống quản lý sinh viên</h3>
 <hr>
+<%if(typeof success !== 'undefined' && success == true) {%>
+    <p>Sửa thành công</p>
+<%}%>
 <h4>Sửa thông tinh sinh viên</h4>
 <div>
     <form action="/update-student" method="POST">
         <input type="text" name="mssv" value="<%=student.mssv%>" readonly>
-        <%if(mssvError) {%>
-            <p><%=mssvError%></p>
+        <% if(typeof errors !== 'undefined' && errors.mssvError) {%>
+            <p><%=errors.mssvError%></p>
         <%}%>
         <input type="text" name="name" value="<%=student.name%>" required>
-        <%if(nameError) {%>
-            <p><%=nameError%></p>
+        <%if(typeof errors !== 'undefined' && errors.nameError) {%>
+            <p><%=errors.nameError%></p>
         <%}%>
         <input type="text" name="dateOfBirth" value="<%=student.dateOfBirth%>" required>
-        <%if(dateOfBirthError) {%>
-            <p><%=dateOfBirthError%></p>
+        <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
+            <p><%=errors.dateOfBirthError%></p>
         <%}%>
         <input type="text" name="gender" value="<%=student.gender%>" required>
-        <%if(genderError) {%>
-            <p><%=genderError%></p>
+        <%if(typeof errors !== 'undefined' && errors.genderError) {%>
+            <p><%=errors.genderError%></p>
         <%}%>
         <input type="text" name="address" value="<%=student.address%>" required>
-        <%if(addressError) {%>
-            <p><%=addressError%></p>
+        <%if(typeof errors !== 'undefined' && errors.addressError) {%>
+            <p><%=errors.addressError%></p>
         <%}%>
         <input type="button" value="Xóa">
         <input type="submit" value="Sửa">

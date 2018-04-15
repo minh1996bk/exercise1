@@ -37,6 +37,7 @@ module.exports.routes = {
   'GET /add-student': 'StudentController.getAddPage',
   'GET /students': 'StudentController.getStudents',
   'GET /delete-student': 'StudentController.getDeletePage',
+  'GET /create-data': {action: 'create-data'},
 
   /***************************************************************************
   *                                                                          *

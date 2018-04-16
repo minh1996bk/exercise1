@@ -19,9 +19,10 @@
 				
 				<div>
 					<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
-					<form action="/search-student" method="GET">
-						<button type="submit" name="btntk" id="btntk">Tìm</button>
-						<input type="text" name="tk" id="tk" placeholder="Tìm theo tên, mã sinh viên..">
+					<form action="/students" method="GET">
+						<button type="submit" id="btntk">Tìm</button>
+						<input type="text" name="searchString" id="tk" value="<%=searchString%>" placeholder="Tìm theo tên, mã sinh viên..">
+						<input type="hidden" name="fromSearch" value="true">
 					</form>
 				</div>
 				<table>
@@ -50,16 +51,28 @@
 				</table>
 				<div class="page-number">
 					<ul>
-					  <li><a href="/students?page_number=1&record_count=<%=record_count%>">First</a></li>
-					  <li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>"><<</a></li>
-					 
-					
-					  <%for (let i = start; i <= end; i ++) {%>
-						<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>"><%=i%></a></li>
-					  <%}%>
+						<%if(typeof searchString !== 'undefined' && searchString) {%>
+							<li><a href="/students?page_number=1&record_count=<%=record_count%>&searchString=<%=searchString%>">First</a></li>
+							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>&searchString=<%=searchString%>"><<</a></li>
+							
+							<%for (let i = start; i <= end; i ++) {%>
+								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>&searchString=<%=searchString%>"><%=i%></a></li>
+							<%}%>
 
-					  <li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>">>></a></li>
-					  <li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>">Last</a></li>
+							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>&searchString=<%=searchString%>">>></a></li>
+							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>&searchString=<%=searchString%>">Last</a></li>
+						<%} else {%>
+							<li><a href="/students?page_number=1&record_count=<%=record_count%>">First</a></li>
+							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>"><<</a></li>
+							
+							<%for (let i = start; i <= end; i ++) {%>
+								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>"><%=i%></a></li>
+							<%}%>
+
+							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>">>></a></li>
+							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>">Last</a></li>
+						<%}%>	
+					  
 					</ul>
 				</div>
 				

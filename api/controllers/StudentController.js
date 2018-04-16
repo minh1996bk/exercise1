@@ -198,9 +198,13 @@ module.exports = {
     },
 
     getStudents: async function getStudents(req, res) {
+        
         let pageNumber;
         let recordCount
-    
+        let searchString;
+        let results;
+        let totalStudentCount;
+        
         if (!req.query.page_number) {
             if (req.session.currentPage) {
                 pageNumber = req.session.currentPage;
@@ -208,14 +212,67 @@ module.exports = {
             } else {
                 pageNumber = 1;
                 recordCount = 10;
+                delete req.session.searchString;
             }
         } else {
             pageNumber = parseInt(req.query.page_number);
             recordCount = parseInt(req.query.record_count);
         }
+        searchString = req.query.searchString;
+        if (!searchString) {
+            
+            if (!req.query.fromSearch && req.session.searchString) {
+                searchString = req.session.searchString;
+            }
+        }
+        
+        if (searchString) {
+            results = await Student.find({
+                or: [
+                    {
+                        mssv: {
+                            contains: searchString
+                        }
+                    },
+                    {
+                        name: {
+                            contains: searchString
+                        }
+                    },
+                    {
+                        address: {
+                            contains: searchString
+                        }
+                    }
+                ]
+            }).limit(recordCount).skip((pageNumber - 1) * recordCount);
     
-        let results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
-        let totalStudentCount = await Student.count({});
+            totalStudentCount = await Student.count({
+                or: [
+                    {
+                        mssv: {
+                            contains: searchString
+                        }
+                    },
+                    {
+                        name: {
+                            contains: searchString
+                        }
+                    },
+                    {
+                        address: {
+                            contains: searchString
+                        }
+                    }
+                ]
+            });
+        } else {
+            results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
+    
+            totalStudentCount = await Student.count({});
+        }
+
+
         let currentStudentCount = pageNumber * recordCount <= totalStudentCount ? pageNumber * recordCount : totalStudentCount;
         let _last = Math.ceil((totalStudentCount) / recordCount);
         if (_last == 0) {
@@ -229,6 +286,8 @@ module.exports = {
         let _next = pageNumber + 1 < _last ? pageNumber + 1 : _last;
         req.session.currentPage = pageNumber;
         req.session.recordCount = recordCount;
+        req.session.searchString = searchString;
+        // req.session.searchString = searchString;
         res.view('pages/students', {
             students: results,
             record_count: recordCount,
@@ -239,7 +298,8 @@ module.exports = {
             next: _next,
             last: _last,
             totalStudentCount: totalStudentCount,
-            currentStudentCount: currentStudentCount
+            currentStudentCount: currentStudentCount,
+            searchString: searchString
         });
     },
 
@@ -263,5 +323,7 @@ module.exports = {
             mssv: mssv,
             name: name
         })
-    }
+    },
+
+    
 }

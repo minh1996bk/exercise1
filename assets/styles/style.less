@@ -1,31 +1,37 @@
-#main{
-	width: 1000px;
-	margin: 0 auto;
-	background:#dcdcdc;
+body{    
+	background-color:#ccd6da;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    color: #000;
 }
+
+#main{
+	max-width: 1000px;
+	margin: 0 auto;
+	background: #dde8f0;
+	
+}
+
 header{
 	max-height: 100px;
-	background-color: #0b577a;
+	background-color: #edcd66;
 	color: #fff;
 }
 header h2{
 	margin: 0;
-	padding: 5px 15px;}
+	padding: 10px 15px;}
 #top {
-	    height: 40px;
-}
-#top span{
-	margin: 0;
-	padding: 5px 15px;
-	color: #212dcc;
-	font-size: 1.3em
+	    height: 50px;
 
 }
+
 #top button{
 	color: #fff;
 	
 	float: right;
-	background: #558fab;
+	background: #69b736;
 	border-radius: 5px;
 	font-weight: bold;
 	}
@@ -34,10 +40,10 @@ button:hover{
 }
 #middle{
 	width: 100%;
-	border: 1px solid blue;
+	border: 3px #c0cdd2 solid;
 	border-radius: 8px;
 	height: 500px;
-	background: #fff;
+	 background: #fff;
 	
 }
 #middle input,button{
@@ -45,26 +51,41 @@ button:hover{
 	border-radius: 5px;
 	padding: 7px;
 	font-weight: bold;
-	margin: 2px;
+	margin-top: 7px;
+	margin-right: 7px;
 }
 #middle button{
-	color: #fff;
-	background: #558fab;
+	background: #69b736;
 	border-radius: 5px ;
 	font-weight: bold;
-	padding: 7px;
+	
 	width: 75px;
+}
+#middle select{
+	float: right;
+	margin-top: 7px;
+	margin-right: 7px;
+	border: 3px #c0cdd2 solid;
+	border-radius: 8px;
 }
 table,th, tr, td{
 	border: 1px solid black;
 	border-collapse: collapse;
+
 	
 
+}
+table caption {
+		margin: 0;
+	padding: 5px 15px;
+	color: #2dc114;
+	font-size: 1.3em;
+	font-weight: bold;
 }
 table{
 	margin: 0 auto;
 	width: 90%;
-	background-color:white;
+	background-color: #dde8f0;
 }
 .page-number{
     text-align: center;
@@ -86,3 +107,83 @@ table{
 .page-number ul li a:hover{
     background: #eee;
 }
+footer{
+	background: #e4e3e0;
+}
+/* login */
+
+ .clear{clear:both;}
+#loginpanelwrap{width:500px;
+ margin:120px auto auto auto; 
+	background-color:#FFFFFF;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-khtml-border-radius:10px; 
+	border-radius:10px;
+	border:6px #c0cdd2 solid;}
+.loginheader{ width:100%;
+ height:auto; 
+ text-align:center;}
+.logintitle{ font-size:26px;
+ padding:25px 0 0 0px;}
+.logintitle,.title h1 { color:#228c3a;;
+	font-family: 'Belgrano', serif;}
+.loginform{padding:20px;}
+.loginform_row{width:460px;
+	float:left;clear:both;
+	margin:0 0 10px 0;}
+.loginform_row label{width:100px;
+	float:left;padding:5px 0 0px 0;
+	font-size:12px; color:#535E66;
+	 font-weight:bold; 
+	 text-shadow:1px 1px #fff; 
+	 text-align:left;}
+.loginform_input{width:350px;
+	height:34px;float:left;
+	padding:0px 0px 0 4px;
+	 background-color:#F4F6F7; 
+	 border:1px #90A9B7 solid; 
+	 color:#000;
+	 -moz-border-radius:4px;
+	 -webkit-border-radius:4px;
+	 border-radius:4px;}
+input.loginform_submit{float:right; 
+	clear:both; margin:0px 5px 0 0px;
+	color:#fff;background: #7dc44e;
+	-moz-border-radius:4px;-webkit-border-radius:4px;
+	border-radius:4px;font-family:arial;font-size:12px;
+	font-weight: bold;padding:8px 15px;text-align: center;
+	cursor:pointer; border:none;
+	text-shadow:1px 1px #4c9021;}
+	/* add */
+	.title{
+		color: ;
+		margin-top: 30px;
+	}
+	.title hr{
+		width: 37%;
+		margin : 0px auto;
+	}
+	.title h1{
+		text-align: center;
+	}
+ 
+span{float:left; margin-right: 3px;color:red;}
+.loginform_row span::after{content: '*'}
+.loginform_row > div{float:left; margin-left: 110px ;color:red;font-weight: bold}
+@media only screen and (max-width: 600px) {
+	/*  table{
+   	width: 50%;
+   	float: left;
+   }
+   .page-number{
+   	width: 50%;
+
+   } */
+ /*   button,#top button ,#middle select,#middle input{
+   	float:none;
+   	display: block;
+   } */
+  
+}
+#ds a ,#thongbao{color: green}

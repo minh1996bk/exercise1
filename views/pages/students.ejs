@@ -18,6 +18,7 @@
 				
 			</div>
 			<div id="middle">
+<<<<<<< HEAD
 				<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
 				<form action="/students" method="GET">
 						<button type="submit" id="btntk">Tìm</button>
@@ -56,6 +57,48 @@
                         <%})%>
 					</tbody>
 				</table>
+=======
+				
+				<div>
+					<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
+					
+				</div>
+				<form action="/students" method="GET">
+					<button type="submit" id="btntk">Tìm</button>
+					<input type="text" name="searchString" id="tk" value="<%=searchString%>" placeholder="Tìm theo tên, mã sinh viên..">
+					<input type="hidden" name="fromSearch" value="true">
+					<table>
+						<caption>Danh sách sinh viên</caption>
+						<thead>
+							<tr>
+								<th>Mã sv</th>
+								<select>
+									<option value="" selected>Volvo</option>
+									<option value="saab">Saab</option>
+									<option value="vw">VW</option>
+								</select>
+								<th>Họ tên</th>
+								<th>Ngày sinh</th>
+								<th>Giới tính</th>
+								<th>Địa chỉ</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%students.forEach(function(student) {%>
+								<tr>
+									<td><%=student.mssv%></td>
+									<td><a href="/student/<%=student.mssv%>"><%=student.name%></a></td>
+									<td><%=student.dateOfBirth%></td>
+									<td><%=student.gender%></td>
+									<td><%=student.address%></td>
+									
+								</tr>
+							<%})%>
+						</tbody>
+					</table>
+				</form>
+				
+>>>>>>> 11825cdc02fb7ad2151952678b2b9b24912a12ae
 				<div class="page-number">
 					<ul>
 						<%if(typeof searchString !== 'undefined' && searchString) {%>

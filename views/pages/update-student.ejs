@@ -1,44 +1,94 @@
-<h3>Hệ thống quản lý sinh viên</h3>
-<hr>
-<%if(typeof success !== 'undefined' && success == true) {%>
-    <p>Sửa thành công</p>
-<%}%>
-<h4>Sửa thông tinh sinh viên</h4>
-<p><a href="/students">Trở về danh sách sinh viên</a></p>
-<div>
-    <form action="/update-student" method="POST">
-        <input type="text" name="mssv" value="<%=student.mssv%>" readonly>
-        <% if(typeof errors !== 'undefined' && errors.mssvError) {%>
-            <p><%=errors.mssvError%></p>
-        <%}%>
-        <input type="text" name="name" value="<%=student.name%>" required>
-        <%if(typeof errors !== 'undefined' && errors.nameError) {%>
-            <p><%=errors.nameError%></p>
-        <%}%>
-        <input type="text" name="dateOfBirth" value="<%=student.dateOfBirth%>" required>
-        <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
-            <p><%=errors.dateOfBirthError%></p>
-        <%}%>
-        <%if(student.gender === 'Nam'){%>
-            <label for="gender">Nam</label>
-            <input type="radio" name="gender" value="Nam" checked>
-            <label for="gender">Nữ</label>
-            <input type="radio" name="gender" value="Nu">
-        <%} else {%>
-            <label for="gender">Nam</label>
-            <input type="radio" name="gender" value="Nam">
-            <label for="gender">Nữ</label>
-            <input type="radio" name="gender" value="Nu" checked>
-        <%}%>
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Sửa sinh viên </title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+	<div class="title"><h1>Hệ thống quản lý sinh viên</h1><hr></div>
+<div id="loginpanelwrap">
+	<p><a href="/students">Trở về danh sách sinh viên</a></p>
+  	
+	<div class="loginheader">
+
+    <div class="logintitle">Sửa sinh viên </div>
+    </div>
+     
+    <div class="loginform">
+        <form action="/update-student"" method="post">
         
-        <%if(typeof errors !== 'undefined' && errors.genderError) {%>
-            <p><%=errors.genderError%></p>
-        <%}%>
-        <input type="text" name="address" value="<%=student.address%>" required>
-        <%if(typeof errors !== 'undefined' && errors.addressError) {%>
-            <p><%=errors.addressError%></p>
-        <%}%>
-        <button><a href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button>
-        <input type="submit" value="Sửa">
-    </form>
+       		 <div class="loginform_row">
+       			 <label>Mã sinh viên:</label><span></span>
+       			<input type="text"  class="loginform_input" name="mssv"  id="masv" value="<%=student.mssv%>" readonly>
+		        <% if(typeof errors !== 'undefined' && errors.mssvError) {%>
+		            <p><%=errors.mssvError%></p>
+		        <%}%>
+       			<div id="error"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Họ và tên:</label><span></span>
+       			 <input type="text" class="loginform_input" name="name" value="<%=student.name%>" id="txt_name">
+		        <%if(typeof errors !== 'undefined' && errors.nameError) {%>
+		            <p><%=errors.nameError%></p>
+		        <%}%>
+       			 <div id="errorht"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Ngày sinh:</label><span></span>
+       			 <input type="date" name="dateOfBirth" value="<%=student.dateOfBirth%>" id="txt_ns" class="loginform_input">
+		        <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
+		            <p><%=errors.dateOfBirthError%></p>
+		        <%}%>
+       			 <div id="errorns"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Giới tính:</label>
+       			  <%if(student.gender === 'Nam'){%>
+	            <label for="gender">Nam</label>
+	            <input type="radio" name="gender" value="Nam" checked>
+	            <label for="gender">Nữ</label>
+	            <input type="radio" name="gender" value="Nu">
+	        <%} else {%>
+	            <label for="gender">Nam</label>
+	            <input type="radio" name="gender" value="Nam">
+	            <label for="gender">Nữ</label>
+	            <input type="radio" name="gender" value="Nu" checked>
+	        <%}%>
+	       			 <%if(typeof errors !== 'undefined' && errors.genderError) {%>
+	            <p><%=errors.genderError%></p>
+	        <%}%>
+       			 <div class="error"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Địa chỉ:</label><span></span>
+       			 <input type="text" name="txt_dc"  />
+       			  <input type="text" class="loginform_input"  id="txt_dc" name="address" value="<%=student.address%>" >
+		        <%if(typeof errors !== 'undefined' && errors.addressError) {%>
+		            <p><%=errors.addressError%></p>
+		        <%}%>
+       			 <div id="errordc"></div>
+       		 </div>
+       		 
+       		 <div class="loginform_row">
+       			 <input type="submit" class="loginform_submit" value="Sửa" name="btnLogin" onclick="return check2();" />
+
+
+       		 </div>
+       		 <button style="background: #7dc44e;" ><a style="color:#fff"  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button>
+       		 
+        <div class="clear"></div>
+        </form>
+       
+
+    </div>
+ 
+
 </div>
+<script type="text/javascript" src="js.js"></script>
+
+    	
+</body>
+</html>

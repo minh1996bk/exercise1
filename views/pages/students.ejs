@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Danh sach sinh vien</title>
-	<link rel="stylesheet" href="style.css">
-	<script type="text/javascript" href="js.js"></script>
+	<link rel="stylesheet" href="importer.css">
+	<!--ma sao linhk file javascript lai la href nhi to tuong la src='' chu-->
+	<script type="text/javascript" src="js.js"></script>
 	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
 <body>
@@ -18,46 +19,6 @@
 				
 			</div>
 			<div id="middle">
-<<<<<<< HEAD
-				<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
-				<form action="/students" method="GET">
-						<button type="submit" id="btntk">Tìm</button>
-						<select name="sx" id="sx">
-						<option value="tang">Sắp tăng dần</option>
-						<option value="giam">Sắp giảm dần</option>
-						</select>
-						<input type="text" name="searchString" id="tk" value="<%=searchString%>" placeholder="Tìm theo tên, mã sinh viên..">
-						<input type="hidden" name="fromSearch" value="true">
-					</form>
-				
-				<!-- <button type="" name="btntk" id="btntk">Tìm</button> -->
-				
-				<!-- <input type="text" name="tk" id="tk" placeholder="Tìm theo tên, mã sinh viên.."> -->
-				<table>
-					<caption>Danh sách sinh viên</caption>
-					<thead>
-						<tr>
-							<th>Mã sv</th>
-							<th>Họ tên</th>
-							<th>Ngày sinh</th>
-							<th>Giới tính</th>
-							<th>Địa chỉ</th>
-						</tr>
-					</thead>
-					<tbody>
-                        <%students.forEach(function(student) {%>
-                            <tr>
-                                <td><%=student.mssv%></td>
-                                <td><a href="/student/<%=student.mssv%>"><%=student.name%></a></td>
-                                <td><%=student.dateOfBirth%></td>
-                                <td><%=student.gender%></td>
-                                <td><%=student.address%></td>
-                                
-                            </tr>
-                        <%})%>
-					</tbody>
-				</table>
-=======
 				
 				<div>
 					<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
@@ -98,7 +59,6 @@
 					</table>
 				</form>
 				
->>>>>>> 11825cdc02fb7ad2151952678b2b9b24912a12ae
 				<div class="page-number">
 					<ul>
 						<%if(typeof searchString !== 'undefined' && searchString) {%>

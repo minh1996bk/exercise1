@@ -1,35 +1,82 @@
-<h3>Hệ thống quản lý sinh viên</h3>
-<%if(typeof success !== 'undefined' && success == true) {%>
-    <p>Thêm thành công</p>
-<%}%>
-<hr>
-<h4>Thêm mới sinh viên</h4>
-<p><a href="/students">Trở về danh sách sinh viên</a></p>
-<div>
-    <form action="/student" method="POST">
-        <input type="text" name="mssv" placeholder="Nhập vào mssv" required>
-        <% if(typeof errors !== 'undefined' && errors.mssvError) {%>
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Nhập sinh viên mới</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+	<div class="title"><h1>Hệ thống quản lý sinh viên</h1><hr></div>
+<div id="loginpanelwrap">
+	<h3 id="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
+
+  	
+	<div class="loginheader">
+
+    <div class="logintitle">Nhập sinh viên mới</div>
+    </div>
+     
+    <div class="loginform">
+        <form action="" method="post">
+        
+       		 <div class="loginform_row">
+       			 <label>Mã sinh viên:</label><span></span>
+       			<input type="text" class="loginform_input" name="mssv" id="masv"/>
+       			<% if(typeof errors !== 'undefined' && errors.mssvError) {%>
             <p><%=errors.mssvError%></p>
         <%}%>
-        <input type="text" name="name" placeholder="Nhập vào tên sinh viên" required>
-        <%if(typeof errors !== 'undefined' && errors.nameError) {%>
+       			<div id="error"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Họ và tên:</label><span></span>
+       			 <input type="text" class="loginform_input" name="name" id="txt_name" />
+       			  <%if(typeof errors !== 'undefined' && errors.nameError) {%>
             <p><%=errors.nameError%></p>
         <%}%>
-        <input type="text" name="dateOfBirth" placeholder="Nhập vào ngày sinh" required>
-        <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
+       			 <div id="errorht"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Ngày sinh:</label><span></span>
+       			 <input type="date" class="loginform_input" name="dateOfBirth" id="txt_ns"/>
+       			  <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
             <p><%=errors.dateOfBirthError%></p>
         <%}%>
-        <label for="gender">Nam</label>
-        <input type="radio" name="gender" value="Nam" checked>
-        <label for="gender">Nữ</label>
-        <input type="radio" name="gender" value="Nu">
-        <%if(typeof errors !== 'undefined' && errors.genderError) {%>
+       			 <div id="errorns"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Giới tính:</label>
+       			 <input type="radio" name="rdo_gt" value="Nam" checked />Nam<input type="radio" name="gender" value="Nu"/>Nữ
+       			  <%if(typeof errors !== 'undefined' && errors.genderError) {%>
             <p><%=errors.genderError%></p>
         <%}%>
-        <input type="text" name="address" placeholder="Nhập vào địa chỉ" required>
-        <%if(typeof errors !== 'undefined' && errors.addressError) {%>
+       			 <div class="error"></div>
+       		 </div>
+       		 <div class="loginform_row">
+       			 <label>Địa chỉ:</label><span></span>
+       			 <input type="text" class="loginform_input" name="address" id="txt_dc" />
+       			  <%if(typeof errors !== 'undefined' && errors.addressError) {%>
             <p><%=errors.addressError%></p>
         <%}%>
-        <input type="submit" value="Nhập">
-    </form>
+       			 <div id="errordc"></div>
+       		 </div>
+       		 <p id="thongbao">Thành công</p>
+       		 
+       		 <div class="loginform_row">
+       			 <input type="submit" class="loginform_submit" value="Nhập" name="btnLogin" onclick="return check();" />
+
+       		 </div>
+        <div class="clear"></div>
+        </form>
+       
+
+    </div>
+ 
+
 </div>
+<script type="text/javascript" src="js.js"></script>
+
+    	
+</body>
+</html>

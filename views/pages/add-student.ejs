@@ -19,7 +19,9 @@
         <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
             <p><%=errors.dateOfBirthError%></p>
         <%}%>
+        <label for="gender">Nam</label>
         <input type="radio" name="gender" value="Nam" checked>
+        <label for="gender">Nữ</label>
         <input type="radio" name="gender" value="Nu">
         <%if(typeof errors !== 'undefined' && errors.genderError) {%>
             <p><%=errors.genderError%></p>

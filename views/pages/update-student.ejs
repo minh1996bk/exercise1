@@ -20,10 +20,14 @@
             <p><%=errors.dateOfBirthError%></p>
         <%}%>
         <%if(student.gender === 'Nam'){%>
+            <label for="gender">Nam</label>
             <input type="radio" name="gender" value="Nam" checked>
+            <label for="gender">Nữ</label>
             <input type="radio" name="gender" value="Nu">
         <%} else {%>
+            <label for="gender">Nam</label>
             <input type="radio" name="gender" value="Nam">
+            <label for="gender">Nữ</label>
             <input type="radio" name="gender" value="Nu" checked>
         <%}%>
         

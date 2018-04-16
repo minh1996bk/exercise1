@@ -2,9 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" width="device-width" initial-scale="1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Danh sach sinh vien</title>
-	<link rel="stylesheet" href="styles/importer.css">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" href="js.js"></script>
 	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
 <body>
@@ -12,19 +13,25 @@
 		<header><h2>Hệ thống quản lý sinh viên</h2></header><!-- endheader -->
 		<div id="content">
 			<div id="top">
-				<span>Danh sách sinh viên</span>
+				<!-- <span>Danh sách sinh viên</span> -->
 				<button type="" name="btnthem" id="btnthem"><a href="/add-student">Thêm sinh viên mới</a></button>
+				
 			</div>
 			<div id="middle">
-				
-				<div>
-					<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
-					<form action="/students" method="GET">
+				<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
+				<form action="/students" method="GET">
 						<button type="submit" id="btntk">Tìm</button>
+						<select name="sx" id="sx">
+						<option value="tang">Sắp tăng dần</option>
+						<option value="giam">Sắp giảm dần</option>
+						</select>
 						<input type="text" name="searchString" id="tk" value="<%=searchString%>" placeholder="Tìm theo tên, mã sinh viên..">
 						<input type="hidden" name="fromSearch" value="true">
 					</form>
-				</div>
+				
+				<!-- <button type="" name="btntk" id="btntk">Tìm</button> -->
+				
+				<!-- <input type="text" name="tk" id="tk" placeholder="Tìm theo tên, mã sinh viên.."> -->
 				<table>
 					<caption>Danh sách sinh viên</caption>
 					<thead>

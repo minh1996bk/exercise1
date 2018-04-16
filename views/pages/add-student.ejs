@@ -61,7 +61,9 @@
         <%}%>
        			 <div id="errordc"></div>
        		 </div>
-       		 <p id="thongbao">Thành công</p>
+       		 <%if(typeof success !== 'undefined' && success == true) {%>
+    <p>Thêm thành công</p>
+<%}%>
        		 
        		 <div class="loginform_row">
        			 <input type="submit" class="loginform_submit" value="Nhập" name="btnLogin" onclick="return check();" />

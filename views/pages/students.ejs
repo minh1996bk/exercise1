@@ -31,23 +31,41 @@
 					<table cellpadding="7">
 						<caption>Danh sách sinh viên</caption>
 						<thead>
-								<th>Mã sv
-									<select name="">
-										<option>Sắp tăng dần</option>
-										<option>Sắp giảm dần</option>
-									</select>
+								<th>
+									<p>Mã sv</p>
+									<form action="/students" method="GET">
+										<input type="hidden" name="sortField" value="mssv">
+										<select name="sortOrder">
+											<option></option>
+											<option value="ASC">Sắp tăng dần</option>
+											<option value="DESC">Sắp giảm dần</option>
+										</select>
+										<input type="submit" value="Submit">
+									</form>
 								</th>
-								<th>Họ tên
-										<select name="">
-												<option>Sắp tăng dần</option>
-												<option>Sắp giảm dần</option>
-											</select>
+								<th>
+									<p>Họ tên</p>
+									<form action="/students" method="GET">
+										<input type="hidden" name="sortField" value="name">
+										<select name="sortOrder">
+											<option></option>
+											<option value="ASC">Sắp tăng dần</option>
+											<option value="DESC">Sắp giảm dần</option>
+										</select>
+										<input type="submit" value="Submit">
+									</form>
 								</th>
-								<th>Ngày sinh
-										<select name="">
-												<option>Sắp tăng dần</option>
-												<option>Sắp giảm dần</option>
-											</select>
+								<th>
+									<p>Ngày sinh</p>
+									<form action="/students" method="GET">
+										<input type="hidden" name="sortField" value="dateOfBirth">
+										<select name="sortOrder">
+											<option></option>
+											<option value="ASC">Sắp tăng dần</option>
+											<option value="DESC">Sắp giảm dần</option>
+										</select>
+										<input type="submit" value="Submit">
+									</form>
 								</th>
 								<th>Giới tính</th>
 								<th>Địa chỉ</th>

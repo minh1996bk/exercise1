@@ -62,25 +62,25 @@
 				<div class="page-number">
 					<ul>
 						<%if(typeof searchString !== 'undefined' && searchString) {%>
-							<li><a href="/students?page_number=1&record_count=<%=record_count%>&searchString=<%=searchString%>">First</a></li>
-							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>&searchString=<%=searchString%>"><<</a></li>
+							<li><a href="/students?page_number=1&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">First</a></li>
+							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><<</a></li>
 							
 							<%for (let i = start; i <= end; i ++) {%>
-								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>&searchString=<%=searchString%>"><%=i%></a></li>
+								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><%=i%></a></li>
 							<%}%>
 
-							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>&searchString=<%=searchString%>">>></a></li>
-							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>&searchString=<%=searchString%>">Last</a></li>
+							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">>></a></li>
+							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">Last</a></li>
 						<%} else {%>
-							<li><a href="/students?page_number=1&record_count=<%=record_count%>">First</a></li>
-							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>"><<</a></li>
+							<li><a href="/students?page_number=1&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">First</a></li>
+							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><<</a></li>
 							
 							<%for (let i = start; i <= end; i ++) {%>
-								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>"><%=i%></a></li>
+								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><%=i%></a></li>
 							<%}%>
 
-							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>">>></a></li>
-							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>">Last</a></li>
+							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">>></a></li>
+							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">Last</a></li>
 						<%}%>	
 					  
 					</ul>

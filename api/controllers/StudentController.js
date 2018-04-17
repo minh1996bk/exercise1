@@ -204,6 +204,16 @@ module.exports = {
         let searchString;
         let results;
         let totalStudentCount;
+        let sortField;
+        let sortOrder;
+        sortField = req.query.sortField;
+        sortOrder = req.query.sortOrder;
+
+        let defaultSortField = req.session.sortField ? req.session.sortField : "mssv";
+        let defaultSortOrder = req.session.sortOrder ? req.session.sortOrder: "ASC"
+        sortField = ['mssv', 'name', 'dateOfBirth'].includes(sortField) ? sortField : defaultSortField;
+        sortOrder = ['ASC', 'DESC'].includes(sortOrder) ? sortOrder : defaultSortOrder;
+
         
         if (!req.query.page_number) {
             if (req.session.currentPage) {
@@ -213,6 +223,8 @@ module.exports = {
                 pageNumber = 1;
                 recordCount = 10;
                 delete req.session.searchString;
+                delete req.session.sortField;
+                delete req.session.sortOrder;
             }
         } else {
             pageNumber = parseInt(req.query.page_number);
@@ -245,7 +257,10 @@ module.exports = {
                         }
                     }
                 ]
-            }).limit(recordCount).skip((pageNumber - 1) * recordCount);
+            })
+            .sort(`${sortField} ${sortOrder}`)
+            .limit(recordCount)
+            .skip((pageNumber - 1) * recordCount);
     
             totalStudentCount = await Student.count({
                 or: [
@@ -267,7 +282,9 @@ module.exports = {
                 ]
             });
         } else {
-            results = await Student.find({}).limit(recordCount).skip((pageNumber - 1) * recordCount);
+            results = await Student.find({}).sort(`${sortField} ${sortOrder}`)
+            .limit(recordCount)
+            .skip((pageNumber - 1) * recordCount);
     
             totalStudentCount = await Student.count({});
         }
@@ -287,6 +304,8 @@ module.exports = {
         req.session.currentPage = pageNumber;
         req.session.recordCount = recordCount;
         req.session.searchString = searchString;
+        req.session.sortField = sortField;
+        req.session.sortOrder = sortOrder;
         // req.session.searchString = searchString;
         res.view('pages/students', {
             students: results,
@@ -299,7 +318,9 @@ module.exports = {
             last: _last,
             totalStudentCount: totalStudentCount,
             currentStudentCount: currentStudentCount,
-            searchString: searchString
+            searchString: searchString,
+            sortField: sortField,
+            sortOrder: sortOrder,
         });
     },
 

@@ -47,15 +47,15 @@
        		 <div class="loginform_row">
        			 <label>Giới tính:</label>
        			  <%if(student.gender === 'Nam'){%>
-	            <label for="gender">Nam</label>
-	            <input type="radio" name="gender" value="Nam" checked>
-	            <label for="gender">Nữ</label>
-	            <input type="radio" name="gender" value="Nu">
+	            <!-- <label for="gender">Nam</label> -->
+	            <input type="radio" name="gender" value="Nam" checked>Nam
+	            <!-- <label for="gender">Nữ</label> -->
+	            <input type="radio" name="gender" value="Nu">Nữ
 	        <%} else {%>
-	            <label for="gender">Nam</label>
-	            <input type="radio" name="gender" value="Nam">
-	            <label for="gender">Nữ</label>
-	            <input type="radio" name="gender" value="Nu" checked>
+	            <!-- <label for="gender">Nam</label> -->
+	            <input type="radio" name="gender" value="Nam">Nam
+	            <!-- <label for="gender">Nữ</label> -->
+	            <input type="radio" name="gender" value="Nu" checked>Nữ
 	        <%}%>
 	       			 <%if(typeof errors !== 'undefined' && errors.genderError) {%>
 	            <p><%=errors.genderError%></p>
@@ -76,9 +76,10 @@
        			 <input type="submit" class="loginform_submit" value="Sửa" name="btnLogin" onclick="return check2();" />
 
 
-       		 </div>
-       		 <button style="background: #7dc44e;" ><a style="color:#fff"  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button>
-       		 
+						<input style="float: none;" type="submit" class="loginform_submit" value="Xóa" name="btnLogin" <a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>"></a> 
+				<!-- <button  ><a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button> -->
+			</div>
+       		 </form>
         <div class="clear"></div>
         </form>
        

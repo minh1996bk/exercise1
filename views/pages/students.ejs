@@ -32,40 +32,13 @@
 						<caption>Danh sách sinh viên</caption>
 						<thead>
 								<th>
-									<p>Mã sv</p>
-									<form action="/students" method="GET">
-										<input type="hidden" name="sortField" value="mssv">
-										<select name="sortOrder">
-											<option></option>
-											<option value="ASC">Sắp tăng dần</option>
-											<option value="DESC">Sắp giảm dần</option>
-										</select>
-										<input type="submit" value="Submit">
-									</form>
+									<p><a href="/students?fromSearch=false&sortField=mssv&sortOrder=<%=_sortOrder%>">Mã Sinh Viên</a></p>
 								</th>
 								<th>
-									<p>Họ tên</p>
-									<form action="/students" method="GET">
-										<input type="hidden" name="sortField" value="name">
-										<select name="sortOrder">
-											<option></option>
-											<option value="ASC">Sắp tăng dần</option>
-											<option value="DESC">Sắp giảm dần</option>
-										</select>
-										<input type="submit" value="Submit">
-									</form>
+									<p><a href="/students?fromSearch=false&sortField=name&sortOrder=<%=_sortOrder%>">Họ và Tên</a></p>
 								</th>
 								<th>
-									<p>Ngày sinh</p>
-									<form action="/students" method="GET">
-										<input type="hidden" name="sortField" value="dateOfBirth">
-										<select name="sortOrder">
-											<option></option>
-											<option value="ASC">Sắp tăng dần</option>
-											<option value="DESC">Sắp giảm dần</option>
-										</select>
-										<input type="submit" value="Submit">
-									</form>
+									<p><a href="/students?fromSearch=false&sortField=dateOfBirth&sortOrder=<%=_sortOrder%>">Ngày sinh</a></p>
 								</th>
 								<th>Giới tính</th>
 								<th>Địa chỉ</th>

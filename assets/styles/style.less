@@ -15,20 +15,21 @@ body{
 }
 
 header{
-	max-height: 100px;
+	height: 70px;
 	background-color: #edcd66;
 	color: #fff;
 }
 header h2{
 	margin: 0;
-	padding: 10px 15px;}
+	padding: 22px 15px; }
 #top {
 	    height: 50px;
 
 }
 
+#top button a {color: #fff;}
 #top button{
-	color: #fff;
+	
 	
 	float: right;
 	background: #69b736;
@@ -42,10 +43,11 @@ button:hover{
 	width: 100%;
 	border: 3px #c0cdd2 solid;
 	border-radius: 8px;
-	max-height: 650px;
+	// max-height: 650px;
 	 background: #fff;
 	
 }
+#middle div p {margin-left:10px }
 #middle input,button{
 	float: right;
 	border-radius: 5px;
@@ -61,6 +63,7 @@ button:hover{
 	
 	width: 75px;
 }
+#middle button {color: #fff;}
 #middle select{
 	float: right;
 	margin-top: 0px;
@@ -68,13 +71,21 @@ button:hover{
 	border: 3px #c0cdd2 solid;
 	border-radius: 8px;
 }
-table,th, tr, td{
-	border: 1px solid black;
+table{
+	// border: 1px solid black;
 	border-collapse: collapse;
 	// font-size:26px;
 
 	
 
+}
+table tr td{border-bottom: 1px solid #ddd;
+text-align: center}
+table  tr:nth-child(even){background-color: #fff}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }
 table caption {
 		margin: 0;

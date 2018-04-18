@@ -308,6 +308,7 @@ module.exports = {
         req.session.sortField = sortField;
         req.session.sortOrder = sortOrder;
         // req.session.searchString = searchString;
+        let _sortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
         res.view('pages/students', {
             students: results,
             record_count: recordCount,
@@ -322,6 +323,7 @@ module.exports = {
             searchString: searchString,
             sortField: sortField,
             sortOrder: sortOrder,
+            _sortOrder: _sortOrder,
         });
     },
 

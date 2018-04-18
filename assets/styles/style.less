@@ -127,8 +127,9 @@ footer{
 /* login */
 
  .clear{clear:both;}
-#loginpanelwrap{width:500px;
- margin:120px auto auto auto; 
+#loginpanelwrap{   
+	 width: 744px;
+    margin: 35px auto auto auto;
 	background-color:#FFFFFF;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
@@ -138,7 +139,7 @@ footer{
 .loginheader{ width:100%;
  height:auto; 
  text-align:center;}
-.logintitle{ font-size:26px;
+.logintitle{ font-size:37px;
  padding:25px 0 0 0px;}
 .logintitle,.title h1 { color:#228c3a;;
 	font-family: 'Belgrano', serif;}
@@ -146,16 +147,19 @@ footer{
 .loginform_row{width:460px;
 	float:left;clear:both;
 	margin:0 0 10px 0;}
-.loginform_row label{width:95px;
+.loginform_row label{width:116px;
 	float:left;padding:5px 0 0px 0;
-	font-size:12px; color:#535E66;
+	font-size:16px; color:#535E66;
 	 font-weight:bold; 
 	 text-shadow:1px 1px #fff; 
 	 text-align:left;}
+.loginform_row input[type='radio']{
+	margin-left: 65px;
+}
 .loginform_input{width:350px;
 	height:34px;float:left;
-	margin-left: 9px;
-	margin-top: -22px;
+    float: right;
+    margin-right: -75px;
 	padding:0px 0px 0 4px;
 	 background-color:#F4F6F7; 
 	 border:1px #90A9B7 solid; 
@@ -164,6 +168,7 @@ footer{
 	 -webkit-border-radius:4px;
 	 border-radius:4px;}
 input.loginform_submit{float:right; 
+	margin-left: 296px;
 	clear:both; margin:0px 5px 0 0px;
 	color:#fff;background: #7dc44e;
 	-moz-border-radius:4px;-webkit-border-radius:4px;
@@ -184,9 +189,12 @@ input.loginform_submit{float:right;
 		text-align: center;
 	}
  
-span{ margin-right: 3px;color:red;}
+span{ margin-left: 33px;color:red;}
 .loginform_row span::after{content: '*'}
 .loginform_row > div{float:left; margin-left: 110px ;color:red;font-weight: bold}
+.loginform_row p {
+	color:red;font-weight: bold
+}
 @media only screen and (max-width: 600px) {
 	  table{
    	width: 30%;
@@ -203,3 +211,4 @@ span{ margin-right: 3px;color:red;}
   
 }
 #ds a ,#thongbao{color: green}
+#ds a{    margin-left: 20px;}

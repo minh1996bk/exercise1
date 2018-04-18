@@ -10,7 +10,7 @@
 <body>
 	<div class="title"><h1>Hệ thống quản lý sinh viên</h1><hr></div>
 <div id="loginpanelwrap">
-	<p><a href="/students">Trở về danh sách sinh viên</a></p>
+	<h3 id="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
   	
 	<div class="loginheader">
 
@@ -76,7 +76,7 @@
        			 <input type="submit" class="loginform_submit" value="Sửa" name="btnLogin" onclick="return check2();" />
 
 
-						<input style="float: none;" type="submit" class="loginform_submit" value="Xóa" name="btnLogin" <a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>"></a> 
+						<input  style="float: none;margin-left: 296px;" type="submit" class="loginform_submit" value="Xóa" name="btnLogin" <a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>"></a> 
 				<!-- <button  ><a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button> -->
 			</div>
        		 </form>

@@ -28,7 +28,7 @@ module.exports = {
                format: {
                    pattern: /^\d{8}$/,
                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                       return "MSSV chi chua so va co do dai la 8"
+                       return "phải gồm 8 chữ số";
                    }
                }
             },
@@ -37,7 +37,7 @@ module.exports = {
                 format: {
                     pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Ten sinh vien chi chua ky tu trong bang chu cai";
+                        return "chỉ chứa ký tự tiếng Việt, khoảng trắng";
                     }
                 }
             
@@ -47,7 +47,7 @@ module.exports = {
                 format: {
                     pattern: /\d\d\d\d\-\d\d\-\d\d/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Ngay sinh co dang dd/mm/yyyy";
+                        return "dạng yyyy-MM-dd";
                     }
                 }
         
@@ -57,7 +57,7 @@ module.exports = {
                 format: {
                     pattern: /Nam|Nu/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Gioi tinh Nam hoac Nu";
+                        return "là Nam hoặc Nữ";
                     }
                 }
             },
@@ -66,7 +66,7 @@ module.exports = {
                 format: {
                     pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
+                        return "chỉ chứa ký tự tiếng Việt, khoảng trắng, dấu '-'";
                     }
                 }
             }
@@ -115,7 +115,7 @@ module.exports = {
                 format: {
                     pattern: /^\d{8}$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "MSSV chi chua so va co do dai la 8"
+                        return "phải gồm 8 chữ số";
                     }
                 }
              },
@@ -124,7 +124,7 @@ module.exports = {
                  format: {
                      pattern:/^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Ten sinh vien chi chua ky tu trong bang chu cai";
+                        return "chỉ chứa ký tự tiếng Việt, khoảng trắng";
                      }
                  }
              
@@ -134,7 +134,7 @@ module.exports = {
                  format: {
                      pattern: /\d\d\d\d\-\d\d\-\d\d/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Ngay sinh co dang dd/mm/yyyy";
+                        return "dạng yyyy-MM-dd";
                      }
                  }
          
@@ -144,7 +144,7 @@ module.exports = {
                  format: {
                      pattern: /Nam|Nu/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Gioi tinh Nam hoac Nu";
+                        return "là Nam hoặc Nữ";
                      }
                  }
              },
@@ -153,7 +153,7 @@ module.exports = {
                  format: {
                      pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
+                        return "chỉ chứa ký tự tiếng Việt, khoảng trắng, dấu '-'";
                      }
                  }
              }
@@ -188,8 +188,9 @@ module.exports = {
             name: _name,
             dateOfBirth: _dateOfBirth,
             gender: _gender,
-            address: _address
+            address: _address,
         });
+        req.session.success = true;
         return res.redirect('student/' + _mssv);
     },
     deleteStudent: async function deleteStudent(req, res) {
@@ -199,7 +200,7 @@ module.exports = {
     },
 
     getStudents: async function getStudents(req, res) {
-        
+        console.log("Ok");
         let pageNumber;
         let recordCount
         let searchString;
@@ -307,7 +308,7 @@ module.exports = {
         req.session.searchString = searchString;
         req.session.sortField = sortField;
         req.session.sortOrder = sortOrder;
-        // req.session.searchString = searchString;
+        
         let _sortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
         res.view('pages/students', {
             students: results,

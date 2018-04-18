@@ -11,7 +11,11 @@
 	<div class="title"><h1>Hệ thống quản lý sinh viên</h1><hr></div>
 <div id="loginpanelwrap">
 	<h3 id="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
-
+	<h4>
+		<%if(typeof success !== 'undefined' && success == true) {%>
+			<p>Thêm thành công</p>
+		<%}%>
+	</h4>
   	
 	<div class="loginheader">
 
@@ -60,9 +64,7 @@
         		<%}%>
        			 <div id="errordc"></div>
        		</div>
-       		<%if(typeof success !== 'undefined' && success == true) {%>
-    			<p>Thêm thành công</p>
-			<%}%>
+       		
        		 
        		<div class="loginform_row">
        			 <input type="submit" class="loginform_submit" value="Nhập" name="btnLogin" onclick="return check();" />

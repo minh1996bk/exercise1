@@ -9,7 +9,7 @@ module.exports = async function createData(req, res) {
         await Student.create({
             mssv: "2018" + ("0000" + i).slice(-4),
             name: firstNames[createRadomInRange(0, 6)] + " " + secondNames[createRadomInRange(0, 6)] + " " + thirdNames[createRadomInRange(0, 6)],
-            dateOfBirth: ("00" + createRadomInRange(1, 31)).slice(-2) + "/" + ("00" + createRadomInRange(1, 13)).slice(-2) + "/1996" ,
+            dateOfBirth: "1996-" + ("00" + createRadomInRange(1, 13)).slice(-2) + "-" + ("00" + createRadomInRange(1, 31)).slice(-2),
             gender: genders[createRadomInRange(0, 2)],
             address: addresses[createRadomInRange(0, 4)]
         })

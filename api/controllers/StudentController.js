@@ -35,7 +35,7 @@ module.exports = {
             name: {
                 presence: true,
                 format: {
-                    pattern: /[A-Za-z]/,
+                    pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
                         return "Ten sinh vien chi chua ky tu trong bang chu cai";
                     }
@@ -45,7 +45,7 @@ module.exports = {
             dateOfBirth: {
                 presence: true,
                 format: {
-                    pattern: /\d\d\/\d\d\/\d\d\d\d/,
+                    pattern: /\d\d\d\d\-\d\d\-\d\d/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
                         return "Ngay sinh co dang dd/mm/yyyy";
                     }
@@ -64,7 +64,7 @@ module.exports = {
             address: {
                 presence: true,
                 format: {
-                    pattern: /[A-Za-z]/,
+                    pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
                         return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
                     }
@@ -78,6 +78,7 @@ module.exports = {
             gender: _gender,
             address: _address
         }
+       
 
         let testResult = Validator(student, studentConstraint);
 
@@ -121,7 +122,7 @@ module.exports = {
              name: {
                  presence: true,
                  format: {
-                     pattern: /[A-Za-z]/,
+                     pattern:/^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
                          return "Ten sinh vien chi chua ky tu trong bang chu cai";
                      }
@@ -131,7 +132,7 @@ module.exports = {
              dateOfBirth: {
                  presence: true,
                  format: {
-                     pattern: /\d\d\/\d\d\/\d\d\d\d/,
+                     pattern: /\d\d\d\d\-\d\d\-\d\d/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
                          return "Ngay sinh co dang dd/mm/yyyy";
                      }
@@ -150,7 +151,7 @@ module.exports = {
              address: {
                  presence: true,
                  format: {
-                     pattern: /[A-Za-z]/,
+                     pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
                          return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
                      }
@@ -339,7 +340,7 @@ module.exports = {
     getDeletePage: async function getDeletePage(req, res) {
         let mssv = req.query.mssv;
         let name = req.query.name;
-
+    
         return res.view('pages/delete-student', {
             mssv: mssv,
             name: name

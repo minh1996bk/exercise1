@@ -202,6 +202,9 @@ module.exports = {
     deleteStudent: async function deleteStudent(req, res) {
         let mssv = req.body.mssv;
         await Student.destroy({'mssv': mssv});
+        delete req.session.mssv;
+        delete req.session.name;
+        
         return res.redirect('students');
     },
 
@@ -314,7 +317,6 @@ module.exports = {
         req.session.searchString = searchString;
         req.session.sortField = sortField;
         req.session.sortOrder = sortOrder;
-        // req.session.searchString = searchString;
         let _sortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
         res.view('pages/students', {
             students: results,

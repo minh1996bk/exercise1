@@ -10,7 +10,10 @@
 <body>
 	<div class="title"><h1>Hệ thống quản lý sinh viên</h1><hr></div>
 <div id="loginpanelwrap">
-	<h3 id="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
+	<h3 class="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
+	<%if(typeof success !== 'undefined' && success == true) {%>
+		<h4 id="thongbao">Sửa thành công !</h4>
+	<%}%>
   	
 	<div class="loginheader">
 
@@ -18,31 +21,39 @@
     </div>
      
     <div class="loginform">
-        <form action="/update-student"" method="post">
+        <form action="/update-student" method="post">
         
        		 <div class="loginform_row">
-       			 <label>Mã sinh viên:</label><span></span>
+       			<label>Mã sinh viên:</label><span></span>
        			<input type="text"  class="loginform_input" name="mssv"  id="masv" value="<%=student.mssv%>" readonly>
-		        <% if(typeof errors !== 'undefined' && errors.mssvError) {%>
-		            <p><%=errors.mssvError%></p>
-		        <%}%>
-       			<div id="error"></div>
+		       
+       			<div id="error" class="er">
+					    <% if(typeof errors !== 'undefined' && errors.mssvError) {%>
+							<%=errors.mssvError%>
+						<%}%>
+
+				</div>
        		 </div>
        		 <div class="loginform_row">
        			 <label>Họ và tên:</label><span></span>
        			 <input type="text" class="loginform_input" name="name" value="<%=student.name%>" id="txt_name">
-		        <%if(typeof errors !== 'undefined' && errors.nameError) {%>
-		            <p><%=errors.nameError%></p>
-		        <%}%>
-       			 <div id="errorht"></div>
+		        
+       			 <div id="errorht" class="er">
+						<%if(typeof errors !== 'undefined' && errors.nameError) {%>
+							<%=errors.nameError%>
+						<%}%>
+
+				</div>
        		 </div>
        		 <div class="loginform_row">
        			 <label>Ngày sinh:</label><span></span>
        			 <input type="date" name="dateOfBirth" value="<%=student.dateOfBirth%>" id="txt_ns" class="loginform_input">
-		        <%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
-		            <p><%=errors.dateOfBirthError%></p>
-		        <%}%>
-       			 <div id="errorns"></div>
+		       
+					<div id="errorns" class="er">
+							<%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
+								<%=errors.dateOfBirthError%>
+							 <%}%>
+					</div>
        		 </div>
        		 <div class="loginform_row">
        			 <label>Giới tính:</label>
@@ -57,27 +68,33 @@
 	            <!-- <label for="gender">Nữ</label> -->
 	            <input type="radio" name="gender" value="Nu" checked>Nữ
 	        <%}%>
-	       			 <%if(typeof errors !== 'undefined' && errors.genderError) {%>
-	            <p><%=errors.genderError%></p>
-	        <%}%>
-       			 <div class="error"></div>
+	       			
+       			<div class="er">
+					    <%if(typeof errors !== 'undefined' && errors.genderError) {%>
+							<%=errors.genderError%>
+						 <%}%>
+
+				</div>
        		 </div>
        		 <div class="loginform_row">
        			 <label>Địa chỉ:</label><span></span>
        			
        			  <input type="text" class="loginform_input"  id="txt_dc" name="address" value="<%=student.address%>" >
-		        <%if(typeof errors !== 'undefined' && errors.addressError) {%>
-		            <p><%=errors.addressError%></p>
-		        <%}%>
-       			 <div id="errordc"></div>
+		       
+       			<div id="errordc" class="er">
+					    <%if(typeof errors !== 'undefined' && errors.addressError) {%>
+							<p><%=errors.addressError%></p>
+						<%}%>
+
+				</div>
        		 </div>
-       		 
+       		
        		 <div class="loginform_row">
-       			 <input type="submit" class="loginform_submit" value="Sửa" name="btnLogin" onclick="return check2();" />
+       			 <input type="submit" class="loginform_submit" value="Sửa" onclick="return check();" />
 
 
-						<input  style="float: none;margin-left: 296px;" type="submit" class="loginform_submit" value="Xóa" name="btnLogin" <a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>"></a> 
-				<!-- <button  ><a  href="/delete-student?mssv=<%=student.mssv%>&name=<%=student.name%>">Xóa</a></button> -->
+						<input  style="float: none;margin-left: 296px;" type="submit" class="loginform_submit" value="Xóa" name="btnDelete">
+						
 			</div>
        		 </form>
         <div class="clear"></div>

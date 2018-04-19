@@ -28,7 +28,7 @@ module.exports = {
                format: {
                    pattern: /^\d{8}$/,
                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                       return "MSSV chi chua so va co do dai la 8"
+                       return "gồm 8 số."
                    }
                }
             },
@@ -37,7 +37,7 @@ module.exports = {
                 format: {
                     pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Ten sinh vien chi chua ky tu trong bang chu cai";
+                        return "chỉ chứa ký tự tiếng việt, khoảng trắng";
                     }
                 }
             
@@ -47,7 +47,7 @@ module.exports = {
                 format: {
                     pattern: /\d\d\d\d\-\d\d\-\d\d/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Ngay sinh co dang dd/mm/yyyy";
+                        return "có dạng yyyy-MM-dd";
                     }
                 }
         
@@ -57,7 +57,7 @@ module.exports = {
                 format: {
                     pattern: /Nam|Nu/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Gioi tinh Nam hoac Nu";
+                        return "nam hoặc nữ";
                     }
                 }
             },
@@ -66,7 +66,7 @@ module.exports = {
                 format: {
                     pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
+                        return "chỉ chứa ký tự tiếng việt, khoảng trắng";
                     }
                 }
             }
@@ -102,6 +102,12 @@ module.exports = {
         res.redirect('add-student');
     },
     updateStudent: async function updateStudent(req, res) {
+        if (req.body.btnDelete) {
+            req.session.mssv = req.body.mssv;
+            req.session.name = req.body.name;
+
+            return res.redirect('delete-student');
+        }
         const Validator = require('validate.js');
         let _mssv = req.body.mssv;
         let _name = req.body.name;
@@ -115,7 +121,7 @@ module.exports = {
                 format: {
                     pattern: /^\d{8}$/,
                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "MSSV chi chua so va co do dai la 8"
+                        return "gồm 8 số."
                     }
                 }
              },
@@ -124,7 +130,7 @@ module.exports = {
                  format: {
                      pattern:/^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Ten sinh vien chi chua ky tu trong bang chu cai";
+                         return "chỉ chứa ký tự tiếng việt, khoảng trắng";
                      }
                  }
              
@@ -134,7 +140,7 @@ module.exports = {
                  format: {
                      pattern: /\d\d\d\d\-\d\d\-\d\d/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Ngay sinh co dang dd/mm/yyyy";
+                         return "có dạng yyyy-MM-dd";
                      }
                  }
          
@@ -144,7 +150,7 @@ module.exports = {
                  format: {
                      pattern: /Nam|Nu/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Gioi tinh Nam hoac Nu";
+                         return "nam hoặc nữ";
                      }
                  }
              },
@@ -153,7 +159,7 @@ module.exports = {
                  format: {
                      pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
                      message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "Dia chi sinh vien chi chua ky tu trong bang chu cai";
+                         return "chỉ chứa ký tự tiếng việt, khoảng trắng";
                      }
                  }
              }
@@ -190,6 +196,7 @@ module.exports = {
             gender: _gender,
             address: _address
         });
+        req.session.success = true;
         return res.redirect('student/' + _mssv);
     },
     deleteStudent: async function deleteStudent(req, res) {
@@ -340,8 +347,8 @@ module.exports = {
     },
 
     getDeletePage: async function getDeletePage(req, res) {
-        let mssv = req.query.mssv;
-        let name = req.query.name;
+        let mssv = req.session.mssv;
+        let name = req.session.name;
     
         return res.view('pages/delete-student', {
             mssv: mssv,

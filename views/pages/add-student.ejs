@@ -9,8 +9,11 @@
 </head>
 <body>
 	<div class="title"><h1>Hệ thống quản lý sinh viên</h1><hr></div>
-<div id="loginpanelwrap">
-	<h3 id="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
+	<div id="loginpanelwrap">
+		<h3 class="ds"><a href="/students">Trở về danh sách sinh viên</a></h3>
+			<%if(typeof success !== 'undefined' && success == true) {%>
+		<p>Thêm thành công</p>
+				<%}%>
 
   	
 	<div class="loginheader">
@@ -23,46 +26,54 @@
        		<div class="loginform_row">
        			<label>Mã sinh viên:</label><span></span>
        			<input type="text" class="loginform_input" name="mssv" id="masv"/>
-       			<% if(typeof errors !== 'undefined' && errors.mssvError) {%>
-            		<p><%=errors.mssvError%></p>
-        		<%}%>
-       			<div id="error"></div>
+       			
+       			<div id="error" class="er">
+					<% if(typeof errors !== 'undefined' && errors.mssvError) {%>
+						<%=errors.mssvError%>
+					<%}%>
+				</div>
        		</div>
        		<div class="loginform_row">
        			<label>Họ và tên:</label><span></span>
        			<input type="text" class="loginform_input" name="name" id="txt_name" />
-       				<%if(typeof errors !== 'undefined' && errors.nameError) {%>
-            			<p><%=errors.nameError%></p>
-        			<%}%>
-       			 <div id="errorht"></div>
+       				
+       			 <div id="errorht" class="er">
+					<%if(typeof errors !== 'undefined' && errors.nameError) {%>
+						<%=errors.nameError%>
+					<%}%>
+				</div>
        		</div>
        		<div class="loginform_row">
        			<label>Ngày sinh:</label><span></span>
        			<input type="date" class="loginform_input" name="dateOfBirth" id="txt_ns"/>
-       			<%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
-            		<p><%=errors.dateOfBirthError%></p>
-        		<%}%>
-       			 <div id="errorns"></div>
+       			
+       			 <div id="errorns" class="er">
+					<%if(typeof errors !== 'undefined' && errors.dateOfBirthError) {%>
+						<%=errors.dateOfBirthError%>
+					<%}%>
+				</div>
        		</div>
        		<div class="loginform_row">
        			<label>Giới tính:</label>
        			<input type="radio" name="gender" value="Nam" checked />Nam<input type="radio" name="gender" value="Nu"/>Nữ
-       			<%if(typeof errors !== 'undefined' && errors.genderError) {%>
-            		<p><%=errors.genderError%></p>
-        		<%}%>
-       			<div class="error"></div>
+       			
+       			<div class="er">
+					<%if(typeof errors !== 'undefined' && errors.genderError) {%>
+						<%=errors.genderError%>
+					<%}%>
+				</div>
        		</div>
        		<div class="loginform_row">
        			<label>Địa chỉ:</label><span></span>
        			<input type="text" class="loginform_input" name="address" id="txt_dc" />
-       			<%if(typeof errors !== 'undefined' && errors.addressError) {%>
-            		<p><%=errors.addressError%></p>
-        		<%}%>
-       			 <div id="errordc"></div>
+       			
+       			 <div id="errordc" class="er">
+					<%if(typeof errors !== 'undefined' && errors.addressError) {%>
+						<%=errors.addressError%>
+					<%}%>
+				</div>
        		</div>
-       		<%if(typeof success !== 'undefined' && success == true) {%>
-    			<p>Thêm thành công</p>
-			<%}%>
+       		
        		 
        		<div class="loginform_row">
        			 <input type="submit" class="loginform_submit" value="Nhập" name="btnLogin" onclick="return check();" />

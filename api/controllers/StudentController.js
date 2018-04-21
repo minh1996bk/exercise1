@@ -146,7 +146,8 @@ module.exports = {
         return res.json({
             message: "ok",
             query: req.query,
-            students: students
+            students: students,
+            totalStudent: totalStudent,
         })
     },
 

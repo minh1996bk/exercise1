@@ -87,7 +87,7 @@ async function doAsync() {
 	
 
 	let data = await getStudents();
-		
+	console.log(data);
 	renderStudents(data.students);
 	renderNumberPage(data.totalStudent, currentPage);
 	

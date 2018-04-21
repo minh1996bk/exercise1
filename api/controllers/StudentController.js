@@ -15,62 +15,13 @@ module.exports = {
     },
     
     addStudent: async function addStudent(req, res) {
-        const Validator = require('validate.js');
         let _mssv = req.body.mssv;
         let _name = req.body.name;
         let _dateOfBirth = req.body.dateOfBirth;
         let _gender = req.body.gender;
         let _address = req.body.address;
         
-        let studentConstraint = {
-            mssv: {
-               presence: true,
-               format: {
-                   pattern: /^\d{8}$/,
-                   message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                       return "gồm 8 số."
-                   }
-               }
-            },
-            name: {
-                presence: true,
-                format: {
-                    pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
-                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "chỉ chứa ký tự tiếng việt, khoảng trắng";
-                    }
-                }
-            
-            },
-            dateOfBirth: {
-                presence: true,
-                format: {
-                    pattern: /\d\d\d\d\-\d\d\-\d\d/,
-                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "có dạng yyyy-MM-dd";
-                    }
-                }
-        
-            },
-            gender: {
-                presence: true,
-                format: {
-                    pattern: /Nam|Nu/,
-                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "nam hoặc nữ";
-                    }
-                }
-            },
-            address: {
-                presence: true,
-                format: {
-                    pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
-                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "chỉ chứa ký tự tiếng việt, khoảng trắng";
-                    }
-                }
-            }
-        }
+       
         let student = {
             mssv: _mssv,
             name: _name,
@@ -80,8 +31,7 @@ module.exports = {
         }
        
 
-        let testResult = Validator(student, studentConstraint);
-
+        let testResult = await sails.helpers.validateStudent(student);
         if (testResult) {
 
             let errors = {};
@@ -108,62 +58,13 @@ module.exports = {
 
             return res.redirect('delete-student');
         }
-        const Validator = require('validate.js');
         let _mssv = req.body.mssv;
         let _name = req.body.name;
         let _dateOfBirth = req.body.dateOfBirth;
         let _gender = req.body.gender;
         let _address = req.body.address;
-        
-        let studentConstraint = {
-            mssv: {
-                presence: true,
-                format: {
-                    pattern: /^\d{8}$/,
-                    message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                        return "gồm 8 số."
-                    }
-                }
-             },
-             name: {
-                 presence: true,
-                 format: {
-                     pattern:/^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
-                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "chỉ chứa ký tự tiếng việt, khoảng trắng";
-                     }
-                 }
-             
-             },
-             dateOfBirth: {
-                 presence: true,
-                 format: {
-                     pattern: /\d\d\d\d\-\d\d\-\d\d/,
-                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "có dạng yyyy-MM-dd";
-                     }
-                 }
-         
-             },
-             gender: {
-                 presence: true,
-                 format: {
-                     pattern: /Nam|Nu/,
-                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "nam hoặc nữ";
-                     }
-                 }
-             },
-             address: {
-                 presence: true,
-                 format: {
-                     pattern: /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/,
-                     message: function(value, attribute, validatorOptions, attributes, globalOptions) {
-                         return "chỉ chứa ký tự tiếng việt, khoảng trắng";
-                     }
-                 }
-             }
-        }
+       
+       
         let student = {
             mssv: _mssv,
             name: _name,
@@ -172,7 +73,7 @@ module.exports = {
             address: _address
         }
 
-        let testResult = Validator(student, studentConstraint);
+        let testResult = sails.helpers.validateStudent(student);
 
         if (testResult) {
 
@@ -238,8 +139,8 @@ module.exports = {
                 delete req.session.sortOrder;
             }
         } else {
-            pageNumber = parseInt(req.query.page_number);
-            recordCount = parseInt(req.query.record_count);
+            pageNumber = parseInt(req.query.pageNumber);
+            recordCount = parseInt(req.query.recordCount);
         }
         searchString = req.query.searchString;
         if (!searchString) {
@@ -318,22 +219,7 @@ module.exports = {
         req.session.sortField = sortField;
         req.session.sortOrder = sortOrder;
         let _sortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
-        res.view('pages/students', {
-            students: results,
-            record_count: recordCount,
-            start: _start,
-            end: _end,
-            current_page: pageNumber,
-            prev: _prev,
-            next: _next,
-            last: _last,
-            totalStudentCount: totalStudentCount,
-            currentStudentCount: currentStudentCount,
-            searchString: searchString,
-            sortField: sortField,
-            sortOrder: sortOrder,
-            _sortOrder: _sortOrder,
-        });
+        res.json(results);
     },
 
     getAddPage: async function getAddPage(req, res) {
@@ -357,6 +243,9 @@ module.exports = {
             name: name
         })
     },
+    getListPage: async function getListPage(req, res) {
+        res.view('pages/students');
+    }
 
     
 }

@@ -1,97 +1,85 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Danh sach sinh vien</title>
-	<link rel="stylesheet" href="importer.css">
-	<!--ma sao linhk file javascript lai la href nhi to tuong la src='' chu-->
-	<script type="text/javascript" src="js.js"></script>
-	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-</head>
-<body>
-	<div id="main">
-		<header><h2>Hệ thống quản lý sinh viên</h2></header><!-- endheader -->
-		<div id="content">
-			<div id="top">
-				<!-- <span>Danh sách sinh viên</span> -->
-				<button type="" name="btnthem" id="btnthem"><a href="/add-student">Thêm sinh viên mới</a></button>
-				
-			</div>
-			<div id="middle">
-				
-				<div>
-					<p>Đang xem <%=currentStudentCount%>/<%=totalStudentCount%></p>
-					
-				</div>
-				<form action="/students" method="GET">
-					<button type="submit" id="btntk">Tìm</button>
-					<input type="text" name="searchString" id="tk" value="<%=searchString%>" placeholder="Tìm theo tên, mã sinh viên..">
-					<input type="hidden" name="fromSearch" value="true">
-					<table cellpadding="7">
-						<caption>Danh sách sinh viên</caption>
-						<thead>
-								<th>
-									<p><a href="/students?fromSearch=false&sortField=mssv&sortOrder=<%=_sortOrder%>">Mã Sinh Viên</a></p>
-								</th>
-								<th>
-									<p><a href="/students?fromSearch=false&sortField=name&sortOrder=<%=_sortOrder%>">Họ và Tên</a></p>
-								</th>
-								<th>
-									<p><a href="/students?fromSearch=false&sortField=dateOfBirth&sortOrder=<%=_sortOrder%>">Ngày sinh</a></p>
-								</th>
-								<th>Giới tính</th>
-								<th>Địa chỉ</th>
-							</tr>
-						</thead>
-						<tbody>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div id="main">
+	<header><h2>Hệ thống quản lý sinh viên</h2></header>
+	<div id="content">
+		<div id="divInfo">
+			<p>Đang xem </p>
+		</div>
+		<div id="divInsert">
+			<button id="btnInsert"><i class="glyphicon glyphicon-plus"></i>Thêm sinh viên</button>
+		</div>
+		<div id="divSearch">
+			<button id="btnSearch"><i class="glyphicon glyphicon-search"></i>Tìm kiếm</button>
+			<input type="text" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
+		</div>
+		<div id="divTable">
+			<table cellpadding="7">
+				<caption>Danh sách sinh viên</caption>
+				<thead>
+						<th>
+							<p>Tùy chọn</p>
+						</th>
+						<th>
+							Mã Sinh Viên
+							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+						</th>
+						<th>
+							Họ và Tên
+							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+						</th>
+						<th>
+							Ngày sinh
+							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+						</th>
+						<th>
+							Giới tính
+							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+						</th>
+						<th>
+							Địa chỉ
+							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td>
+								<button><i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa</button>
+								<button><i class="glyphicon glyphicon-remove"></i>Xóa</button>
+							</td>
+							<td><a>No name</a></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 							
-							<%students.forEach(function(student) {%>
-								<tr>
-									<td class="stu_id"><%=student.mssv%></td>
-									<td><a href="/student/<%=student.mssv%>"><%=student.name%></a></td>
-									<td><%=student.dateOfBirth%></td>
-									<td><%=student.gender%></td>
-									<td><%=student.address%></td>
-									
-								</tr>
-							<%})%>
-						</tbody>
-					</table>
-				</form>
-				
-				<div class="page-number">
-					
-					<ul>
-						<%if(typeof searchString !== 'undefined' && searchString) {%>
-							<li><a href="/students?page_number=1&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">First</a></li>
-							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><<</a></li>
-							
-							<%for (let i = start; i <= end; i ++) {%>
-								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><%=i%></a></li>
-							<%}%>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="divPageNumber">
+			<ul>
+				<li><button>First</button></li>
+				<li><button><<</button></li>	
+				<li><button>1</button></li>	
+				<li><button>2</button></li>	
+				<li><button>3</button></li>
+				<li><button>4</button></li>	
+				<li><button>5</button></li>	
+				<li><button>6</button></li>
+				<li><button>7</button></li>	
+				<li><button>8</button></li>	
+				<li><button>9</button></li>	
+				<li><button>10</button></li>
+				<li><button>>></button></li>	
+				<li><button>Last</button></li>			  
+			</ul>
+		</div>
+	</div>
+	<footer>
+		<div id="divTimeInfo"></div>
+	</footer>
+</div>
 
-							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">>></a></li>
-							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>&searchString=<%=searchString%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">Last</a></li>
-						<%} else {%>
-							<li><a href="/students?page_number=1&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">First</a></li>
-							<li><a href="/students?page_number=<%=prev%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><<</a></li>
-							
-							<%for (let i = start; i <= end; i ++) {%>
-								<li><a href="/students?page_number=<%=i%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>"><%=i%></a></li>
-							<%}%>
-
-							<li><a href="/students?page_number=<%=next%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">>></a></li>
-							<li><a href="/students?page_number=<%=last%>&record_count=<%=record_count%>&sortField=<%=sortField%>&sortOrder=<%=sortOrder%>">Last</a></li>
-						<%}%>	
-					  
-					</ul>
-				</div>
-				
-			</div><!-- endmiddle -->
-		</div><!-- endcontent -->
-		<footer></footer><!-- endfooter -->
-	</div><!-- endmain -->
-	
-</body>
-</html>

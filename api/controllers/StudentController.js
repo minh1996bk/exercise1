@@ -110,116 +110,22 @@ module.exports = {
     },
 
     getStudents: async function getStudents(req, res) {
-        
-        let pageNumber;
-        let recordCount
-        let searchString;
-        let results;
-        let totalStudentCount;
-        let sortField;
-        let sortOrder;
-        sortField = req.query.sortField;
-        sortOrder = req.query.sortOrder;
+        let sortField = req.query.sortField;
+        let sortOrder = req.query.sortOrder;
+        let pageNumber = parseInt(req.query.pageNumber);
+        let recordCount = parseInt(req.query.recordCount);
+        let searchString = req.query.searchString;
 
-        let defaultSortField = req.session.sortField ? req.session.sortField : "mssv";
-        let defaultSortOrder = req.session.sortOrder ? req.session.sortOrder: "ASC"
-        sortField = ['mssv', 'name', 'dateOfBirth'].includes(sortField) ? sortField : defaultSortField;
-        sortOrder = ['ASC', 'DESC'].includes(sortOrder) ? sortOrder : defaultSortOrder;
+        let students = await Student.find({})
+        .sort(`${sortField} ${sortOrder}`)
+        .skip((pageNumber - 1) * recordCount)
+        .limit(recordCount);
 
-        
-        if (!req.query.page_number) {
-            if (req.session.currentPage) {
-                pageNumber = req.session.currentPage;
-                recordCount = req.session.recordCount;
-            } else {
-                pageNumber = 1;
-                recordCount = 10;
-                delete req.session.searchString;
-                delete req.session.sortField;
-                delete req.session.sortOrder;
-            }
-        } else {
-            pageNumber = parseInt(req.query.pageNumber);
-            recordCount = parseInt(req.query.recordCount);
-        }
-        searchString = req.query.searchString;
-        if (!searchString) {
-            
-            if (!req.query.fromSearch && req.session.searchString) {
-                searchString = req.session.searchString;
-            }
-        }
-        
-        if (searchString) {
-            results = await Student.find({
-                or: [
-                    {
-                        mssv: {
-                            contains: searchString
-                        }
-                    },
-                    {
-                        name: {
-                            contains: searchString
-                        }
-                    },
-                    {
-                        address: {
-                            contains: searchString
-                        }
-                    }
-                ]
-            })
-            .sort(`${sortField} ${sortOrder}`)
-            .limit(recordCount)
-            .skip((pageNumber - 1) * recordCount);
-    
-            totalStudentCount = await Student.count({
-                or: [
-                    {
-                        mssv: {
-                            contains: searchString
-                        }
-                    },
-                    {
-                        name: {
-                            contains: searchString
-                        }
-                    },
-                    {
-                        address: {
-                            contains: searchString
-                        }
-                    }
-                ]
-            });
-        } else {
-            results = await Student.find({}).sort(`${sortField} ${sortOrder}`)
-            .limit(recordCount)
-            .skip((pageNumber - 1) * recordCount);
-    
-            totalStudentCount = await Student.count({});
-        }
-
-
-        let currentStudentCount = pageNumber * recordCount <= totalStudentCount ? pageNumber * recordCount : totalStudentCount;
-        let _last = Math.ceil((totalStudentCount) / recordCount);
-        if (_last == 0) {
-            _last = 1;
-        }
-        let _start;
-        _start = pageNumber - 5 > 0 ? pageNumber - 5 : 1;
-        _start = _start + 9 < _last ? _start : (_last - 9 > 0 ? _last - 9 : 1);
-        let _end = _start + 9 < _last ? _start + 9 : _last; 
-        let _prev = pageNumber - 1 > 0 ? pageNumber - 1 : 1;
-        let _next = pageNumber + 1 < _last ? pageNumber + 1 : _last;
-        req.session.currentPage = pageNumber;
-        req.session.recordCount = recordCount;
-        req.session.searchString = searchString;
-        req.session.sortField = sortField;
-        req.session.sortOrder = sortOrder;
-        let _sortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
-        res.json(results);
+        return res.json({
+            message: "ok",
+            query: req.query,
+            results: students
+        })
     },
 
     getAddPage: async function getAddPage(req, res) {

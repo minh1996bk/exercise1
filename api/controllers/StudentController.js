@@ -121,10 +121,32 @@ module.exports = {
         .skip((pageNumber - 1) * recordCount)
         .limit(recordCount);
 
+        let totalStudent = searchString 
+            ? await Student.count({
+                or: [
+                    {
+                        mssv: {
+                            contains: searchString
+                        }
+                    },
+                    {
+                        name: {
+                            contains: searchString
+                        }
+                    },
+                    {
+                        address: {
+                            contains: searchString
+                        }
+                    }
+                ]
+            })
+            : await Student.count({});
+            
         return res.json({
             message: "ok",
             query: req.query,
-            results: students
+            students: students
         })
     },
 

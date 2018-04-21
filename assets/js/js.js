@@ -1,4 +1,4 @@
-var currentPage = 1;
+var currentPage = 8;
 async function doAsync() {
 	async function getStudents(criteria) {
 		criteria = criteria || {};
@@ -38,7 +38,7 @@ async function doAsync() {
 		let startIndex;
 		let endIndex;
 		let prev, next;
-		startIndex = currentPage - 4 >= 1 ? currentPage - 1 : 1;
+		startIndex = currentPage - 4 >= 1 ? currentPage - 4 : 1;
 		endIndex = startIndex + 9 <= totalPage ? startIndex + 9 : totalPage;
 
 		let htm;
@@ -49,9 +49,15 @@ async function doAsync() {
 		`;
 
 		for (let i = startIndex; i <= endIndex; i ++) {
-			htm += `
-				<li><button>${i}</button></li>
-			`;
+			if (currentPage === i) {
+				htm += `
+				<li><button class="btnSelected" disabled>${i}</button></li>`;
+			} else {
+				htm += `
+					<li><button>${i}</button></li>
+				`;
+			}
+			
 		}
 
 		htm += `
@@ -59,6 +65,7 @@ async function doAsync() {
 				<li><button>Last</button></li>
 			</ul>
 		`;
+		console.log(startIndex, currentPage, endIndex);
 		$('#divPageNumber').append(htm);
 
 	}
@@ -87,7 +94,7 @@ async function doAsync() {
 	
 
 	let data = await getStudents();
-	console.log(data);
+	
 	renderStudents(data.students);
 	renderNumberPage(data.totalStudent, currentPage);
 	

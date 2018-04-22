@@ -1,17 +1,11 @@
 module.exports = {
     getStudent: async function getStudent(req, res) {
-        let errors = req.session.errors;
-        let success = req.session.success;
-        delete req.session.errors;
-        delete req.session.success;
-
+    
         let mssv = req.params.mssv;
         let student = await Student.findOne({'mssv': mssv});
-        res.view('pages/update-student', {
+        res.json({
             student: student,
-            errors: errors,
-            success: success
-        });
+        })
     },
     
     addStudent: async function addStudent(req, res) {

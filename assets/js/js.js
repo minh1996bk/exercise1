@@ -1,5 +1,7 @@
-var currentPage = 1;
-
+var currentPage;
+var sortField;
+var sortOrder;
+var searchString;
 function getStudents(criteria) {
 	criteria = criteria || {};
 	let url = `/getStudents?
@@ -75,7 +77,7 @@ function renderNumberPage(totalStudent, currentPage) {
 		</ul>
 	`;
 	let spanInfo = $('#spanInfo');
-	spanInfo.text(` ${currentPage * 10}/${totalStudent}`);
+	spanInfo.text(` ${currentPage * 10 <= totalStudent ? currentPage * 10 : totalStudent}/${totalStudent}`);
 	let divPageNumber = $('#divPageNumber');
 	divPageNumber.empty();
 	divPageNumber.append(htm);
@@ -84,7 +86,10 @@ function renderNumberPage(totalStudent, currentPage) {
 
 async function doMovetoOtherPage(pageNumber) {
 	let criteria = {
-		pageNumber: pageNumber
+		pageNumber: pageNumber,
+		sortField: sortField,
+		sortOrder: sortOrder,
+		searchString: searchString,
 	}
 	let data = await getStudents(criteria);
 	renderStudents(data.students);
@@ -202,6 +207,31 @@ function closePopup() {
 	divPopup.empty();
 	divPopup.hide();
 }
+
+async function onOrderStateChange(_sortField, _sortOrder) {
+
+	let divSortField = $(`div#${_sortField}`);
+	let newSortOrder = _sortOrder === 'ASC' ? 'DESC' : 'ASC';
+	let iconClass = _sortOrder === 'ASC' ? "glyphicon glyphicon-circle-arrow-down" : "glyphicon glyphicon-circle-arrow-up";
+	let htm = `
+		<button class="btnChangeOrder" onclick="onOrderStateChange('${_sortField}', '${newSortOrder}')">
+			<i class="${iconClass}"></i>
+		</button>
+	`;
+	divSortField.empty();
+	divSortField.append(htm);
+
+	let criteria = {
+		sortField : _sortField, 
+		sortOrder: _sortOrder
+	}
+	sortField = _sortField;
+	sortOrder = _sortOrder;
+	let data = await getStudents(criteria);
+	renderStudents(data.students);
+	renderNumberPage(data.totalStudent, 1);
+}
+
 
 (async function() {
 

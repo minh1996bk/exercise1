@@ -22,24 +22,47 @@
 							<p>Tùy chọn</p>
 						</th>
 						<th>
-							Mã Sinh Viên
-							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+							<div class="inTh">
+								Mã Sinh Viên
+							</div>
+							<div id="mssv" class="inTh">
+								<button class="btnChangeOrder" onclick="onOrderStateChange('mssv', 'ASC')">
+									<i class="glyphicon glyphicon-circle-arrow-up"></i>
+								</button>
+							</div>
 						</th>
 						<th>
-							Họ và Tên
-							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+							<div class="inTh">Họ và Tên</div>
+							<div id="name" class="inTh">
+								<button class="btnChangeOrder" onclick="onOrderStateChange('name', 'ASC')">
+									<i class="glyphicon glyphicon-circle-arrow-up">										
+									</i>
+								</button>
+							</div>
 						</th>
 						<th>
-							Ngày sinh
-							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+							<div class="inTh">Ngày sinh</div>
+							<div id="dateOfBirth" class="inTh">
+								<button class="btnChangeOrder" onclick="onOrderStateChange('dateOfBirth', 'ASC')">
+										<i class="glyphicon glyphicon-circle-arrow-up"></i>
+								</button>
+							</div>
 						</th>
 						<th>
-							Giới tính
-							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+							<div class="inTh">Giới tính</div>
+							<div id="gender" class="inTh">
+								<button class="btnChangeOrder" onclick="onOrderStateChange('gender', 'ASC')">
+									<i class="glyphicon glyphicon-circle-arrow-up"></i>
+								</button>
+							</div>
 						</th>
 						<th>
-							Địa chỉ
-							<button class="btnChangeOrder"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+							<div class="inTh">Địa chỉ</div>
+							<div id="address" class="inTh">
+								<button class="btnChangeOrder" onclick="onOrderStateChange('address', 'ASC')">
+									<i class="glyphicon glyphicon-circle-arrow-up"></i>
+								</button>
+							</div>
 						</th>
 					</tr>
 				</thead>

@@ -25,8 +25,10 @@ function renderStudents(students) {
 		htm += `
 		<tr>
 			<td>
-				<button onclick="showUpdateWindow(${student.mssv})"><i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa</button>
-				<button onclick="showDeleteWindow(${student.mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
+				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${student.mssv})">
+					<i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa
+				</button>
+				<button class="btn" onclick="showDeleteWindow(${student.mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
 			</td>
 			<td>${student.mssv}</td>
 			<td>${student.name}</td>
@@ -100,106 +102,62 @@ async function doMovetoOtherPage(pageNumber) {
 async function showDeleteWindow(mssv) {
 	let data = await getStudentByMssv(mssv);
 	let student = data.student;
-	let htm;
-	htm = `
-		<div>
-			<h4>Bạn chắc chắn muốn xóa sinh viên:</h4>
-		</div>
-		<div class="inputElement">
-			<label>Mã sinh viên</label>
-			<input type="text" value="${student.mssv}" readonly>
-		</div>
-		<div class="inputElement">
-			<label>Họ tên</label>
-			<input type="text" value="${student.name}" readonly>
-		</div>
-		
-		<button onclick="sendDeleteRequest(${mssv})">Thực thi</button>
-		<button onclick="closePopup()">Trở về</button>
-	`;
-	let divPopup = $('#divPopup');
-	divPopup.empty();
-	divPopup.append(htm);
-	divPopup.show();
+
 }
 
 async function sendDeleteRequest(mssv) {
-
+	let results = await $.post('/delete-student', {
+		mssv: mssv
+	});
+	console.log(results);
 }
 
 async function showUpdateWindow(mssv) {
 	let data = await getStudentByMssv(mssv);
 	let student = data.student;
-	let htm;
-	htm = `
-		<div class="inputElement">
-			<label>Mã sinh viên</label>
-			<input type="text" value="${student.mssv}" readonly>
-		</div>
-		<div class="inputElement">
-			<label>Họ tên</label>
-			<input type="text" value="${student.name}">
-		</div>
-		<div class="inputElement">
-			<label>Ngày sinh</label>
-			<input type="text" value="${student.dateOfBirth}">
-		</div>
-		<div class="inputElement">
-			<label>Giới tính</label>
-			<input type="text" value="${student.gender}">
-		</div>
-		<div class="inputElement">
-			<label>Địa chỉ</label>
-			<input type="text" value="${student.address}">
-		</div>
-		<button onclick="sendUpdateRequest()">Thực thi</button>
-		<button onclick="closePopup()">Trở về</button>
-	`;
-	
-	let divPopup = $('#divPopup');
-	divPopup.empty();
-	divPopup.append(htm);
-	divPopup.show();
+	$("input[name='mssvUpdate']").val(student.mssv);
+	$("input[name='nameUpdate']").val(student.name);
+	$("input[name='dateOfBirthUpdate']").val(student.dateOfBirth);
+	$("input[name='genderUpdate']").val(student.gender);
+	$("input[name='addressUpdate']").val(student.address);
 }
 
-async function sendUpdateRequest() {
+async function doUpdateStudent() {
+	let mssv = $("input[name='mssvUpdate']").val();
+	let name = $("input[name='nameUpdate']").val();
+	let dateOfBirth = $("input[name='dateOfBirthUpdate']").val();
+	let gender = $("input[name='genderUpdate']").val();
+	let address = $("input[name='addressUpdate']").val();
 
+	let student = {
+		mssv: mssv,
+		name: name,
+		dateOfBirth: dateOfBirth,
+		gender: gender,
+		address: gender
+	}
+	let results = await $.post('/update-student', student);
+	console.log(results);
 }
 
-async function showInsertWindow() {
-	let htm;
-	htm = `
-		<div class="inputElement">
-			<label>Mã sinh viên</label>
-			<input type="text">
-		</div>
-		<div class="inputElement">
-			<label>Họ tên</label>
-			<input type="text">
-		</div>
-		<div class="inputElement">
-			<label>Ngày sinh</label>
-			<input type="text">
-		</div>
-		<div class="inputElement">
-			<label>Giới tính</label>
-			<input type="text">
-		</div>
-		<div class="inputElement">
-			<label>Địa chỉ</label>
-			<input type="text">
-		</div>
-		<button onclick="sendInsertRequest()">Thực thi</button>
-		<button onclick="closePopup()">Trở về</button>
-	`;
-	let divPopup = $('#divPopup');
-	divPopup.empty();
-	divPopup.append(htm);
-	divPopup.show();
-}
 
-async function sendInsertRequest() {
-	
+async function doInsertStudent() {
+	let mssv = $("input[name='mssv']").val();
+	let name = $("input[name='name']").val();
+	let dateOfBirth = $("input[name='dateOfBirth']").val();
+	let gender = $("input[name='gender']").val();
+	let address = $("input[name='address']").val();
+
+	let student = {
+		mssv: mssv,
+		name: name,
+		dateOfBirth: dateOfBirth,
+		gender: gender,
+		address: gender
+	}
+	let results = await $.post('/student', student);
+	console.log(results);
+
 }
 
 function closePopup() {
@@ -234,11 +192,7 @@ async function onOrderStateChange(_sortField, _sortOrder) {
 
 
 (async function() {
-
 	let data = await getStudents();
-	
 	renderStudents(data.students);
 	renderNumberPage(data.totalStudent, currentPage);
-
-	
 })();

@@ -34,24 +34,20 @@ module.exports = {
             errors.dateOfBirthError = testResult.dateOfBirth;
             errors.genderError = testResult.gender;
             errors.addressError = testResult.address;
-            
-            req.session.errors = errors;
 
-            return res.redirect('add-student');
+            return res.json({
+                success: false,
+                errors: errors
+            })
         }
 
        await Student.create(student);
 
-        req.session.success = true;
-        res.redirect('add-student');
+        return res.json({
+            success: true
+        })
     },
     updateStudent: async function updateStudent(req, res) {
-        if (req.body.btnDelete) {
-            req.session.mssv = req.body.mssv;
-            req.session.name = req.body.name;
-
-            return res.redirect('delete-student');
-        }
         let _mssv = req.body.mssv;
         let _name = req.body.name;
         let _dateOfBirth = req.body.dateOfBirth;
@@ -67,7 +63,7 @@ module.exports = {
             address: _address
         }
 
-        let testResult = sails.helpers.validateStudent(student);
+        let testResult = await sails.helpers.validateStudent(student);
 
         if (testResult) {
 
@@ -77,10 +73,11 @@ module.exports = {
             errors.dateOfBirthError = testResult.dateOfBirth;
             errors.genderError = testResult.gender;
             errors.addressError = testResult.address;
-            
-            req.session.errors = errors;
 
-            return res.redirect('student/' + _mssv);
+            return res.json({
+                success: false,
+                errors: errors
+            })
         }
 
 
@@ -91,8 +88,10 @@ module.exports = {
             gender: _gender,
             address: _address
         });
-        req.session.success = true;
-        return res.redirect('student/' + _mssv);
+        
+        return res.json({
+            success: true
+        })
     },
     deleteStudent: async function deleteStudent(req, res) {
         let mssv = req.body.mssv;

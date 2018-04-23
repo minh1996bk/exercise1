@@ -8,7 +8,10 @@
 			<p>Đang xem <span id="spanInfo"></span></p>
 		</div>
 		<div id="divInsert">
-			<button id="btnInsert" onclick="showInsertWindow()"><i class="glyphicon glyphicon-plus"></i>Thêm sinh viên</button>
+			
+			<button type="button" class="btn" data-toggle="modal" data-target="#divInsertModal">
+				<i class="glyphicon glyphicon-plus"></i>Thêm sinh viên
+			</button>
 		</div>
 		<div id="divSearch">
 			<button id="btnSearch"><i class="glyphicon glyphicon-search"></i>Tìm kiếm</button>
@@ -21,7 +24,7 @@
 						<th>
 							<p>Tùy chọn</p>
 						</th>
-						<th>
+						<th class="option">
 							<div class="inTh">
 								Mã Sinh Viên
 							</div>
@@ -31,7 +34,7 @@
 								</button>
 							</div>
 						</th>
-						<th>
+						<th class="headColumn">
 							<div class="inTh">Họ và Tên</div>
 							<div id="name" class="inTh">
 								<button class="btnChangeOrder" onclick="onOrderStateChange('name', 'ASC')">
@@ -40,7 +43,7 @@
 								</button>
 							</div>
 						</th>
-						<th>
+						<th class="headColumn">
 							<div class="inTh">Ngày sinh</div>
 							<div id="dateOfBirth" class="inTh">
 								<button class="btnChangeOrder" onclick="onOrderStateChange('dateOfBirth', 'ASC')">
@@ -48,7 +51,7 @@
 								</button>
 							</div>
 						</th>
-						<th>
+						<th class="headColumn">
 							<div class="inTh">Giới tính</div>
 							<div id="gender" class="inTh">
 								<button class="btnChangeOrder" onclick="onOrderStateChange('gender', 'ASC')">
@@ -56,7 +59,7 @@
 								</button>
 							</div>
 						</th>
-						<th>
+						<th class="headColumn">
 							<div class="inTh">Địa chỉ</div>
 							<div id="address" class="inTh">
 								<button class="btnChangeOrder" onclick="onOrderStateChange('address', 'ASC')">
@@ -67,18 +70,6 @@
 					</tr>
 				</thead>
 				<tbody id="tbodyRows">
-						<tr>
-							<td>
-								<button><i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa</button>
-								<button><i class="glyphicon glyphicon-remove"></i>Xóa</button>
-							</td>
-							<td><a>No name</a></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							
-						</tr>
 				</tbody>
 			</table>
 		</div>
@@ -89,27 +80,75 @@
 	</footer>
 </div>
 
-<div id="divPopup" class="popup">
-	<!-- <div class="inputElement">
-		<label>Mã sinh viên</label>
-		<input type="text">
+<div class="modal" id="divUpdateModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Cập nhật thông tin sinh viên</h4>
+		</div>
+		<div class="modal-body">
+				<div class="inputElement">
+					<label>Mã sinh viên</label>
+					<input class="input" type="text" name="mssvUpdate" readonly>
+				</div>
+				<div class="inputElement">
+					<label>Họ tên</label>
+					<input class="input" type="text" name="nameUpdate">
+				</div>
+				<div class="inputElement">
+					<label>Ngày sinh</label>
+					<input class="input" type="text" name="dateOfBirthUpdate">
+				</div>
+				<div class="inputElement">
+					<label>Giới tính</label>
+					<input class="input" type="text" name="genderUpdate">
+				</div>
+				<div class="inputElement">
+					<label>Địa chỉ</label>
+					<input class="input" type="text" name="addressUpdate">
+				</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default" onclick="doUpdateStudent()">Thực thi</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
 	</div>
-	<div class="inputElement">
-		<label>Họ tên</label>
-		<input type="text">
+</div>
+<div class="modal" id="divInsertModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Thêm sinh viên mới</h4>
+		</div>
+		<div class="modal-body">
+				<div class="inputElement">
+					<label>Mã sinh viên</label>
+					<input class="input" type="text">
+				</div>
+				<div class="inputElement">
+					<label>Họ tên</label>
+					<inputclass="input" type="text">
+				</div>
+				<div class="inputElement">
+					<label>Ngày sinh</label>
+					<input class="input" type="text">
+				</div>
+				<div class="inputElement">
+					<label>Giới tính</label>
+					<input class="input" type="text">
+				</div>
+				<div class="inputElement">
+					<label>Địa chỉ</label>
+					<input class="input" type="text">
+				</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default" onclick="doInsertStudent()">Thực thi</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
 	</div>
-	<div class="inputElement">
-		<label>Ngày sinh</label>
-		<input type="text">
-	</div>
-	<div class="inputElement">
-		<label>Giới tính</label>
-		<input type="text">
-	</div>
-	<div class="inputElement">
-		<label>Địa chỉ</label>
-		<input type="text">
-	</div>
-	<button id="btnInsert">Thực thi</button>
-	<button id="btnClosePopup">Trở về</button> -->
 </div>

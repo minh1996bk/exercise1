@@ -8,15 +8,38 @@ ul li {
 }
 
 #main {
-    position:fixed;
-    top: 50%;
-    left: 50%;
-    width:50%;
-    height:70%;
-    margin-top: -20%; /*set to a negative number 1/2 of your height*/
-    margin-left: -25%; /*set to a negative number 1/2 of your width*/
-    border: 1px solid #ccc;
-    background-color: #f3f3f3;
+    // position:fixed;
+    // top: 50%;
+    // left: 50%;
+    // width:50%;
+    // height:70%;
+    // margin-top: -20%; /*set to a negative number 1/2 of your height*/
+    // margin-left: -25%; /*set to a negative number 1/2 of your width*/
+    // border: 1px solid #ccc;
+    // background-color: #f3f3f3;
+}
+
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+	width: 90%;
+	background-color: #dde8f0;
+	margin-bottom:17px
+}
+
+
+table tr td{
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+
+}
+
+table  tr:nth-child(even){background-color: #fff}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }
 
 div #divTable {
@@ -42,12 +65,12 @@ div #divTable {
 }
 
 .inTh {
-    float: right;
+    float: left;
 }
 
 .input {
     position: fixed;
-    right: 50px;
+    right: 17px;
     width: 300px;
     border-top: 0px;
     border-right: 0px;
@@ -61,11 +84,28 @@ div #divTable {
 
 .btnChangeOrder {
     border: none;
+    background-color: #4CAF50;
 }
 
-th .option {
-    width: 30%;
+.option {
+    padding-top: 4px;
+    width: 15%;
+    text-align: center;
 }
-th .headColumn {
-    width: 14%;
+.headColumn {
+    width: 17%;
+}
+
+
+body{    
+	background-color:#ccd6da;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    color: #000;
+}
+
+.btn {
+    background-color: white;
 }

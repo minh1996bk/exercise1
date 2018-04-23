@@ -21,23 +21,37 @@ function getStudentByMssv(mssv) {
 
 function renderStudents(students) {
 	let htm;
-	students.forEach(student => {
+	let size = students.length;
+	for (let i = 0; i < size; i ++) {
 		htm += `
 		<tr>
 			<td>
-				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${student.mssv})">
+				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">
 					<i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa
 				</button>
-				<button class="btn" onclick="showDeleteWindow(${student.mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
+				<button class="btn" data-toggle="modal" data-target="#divDeleteModal" onclick="showDeleteWindow(${students[i].mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
 			</td>
-			<td>${student.mssv}</td>
-			<td>${student.name}</td>
-			<td>${student.dateOfBirth}</td>
-			<td>${student.gender}</td>
-			<td>${student.address}</td>
+			<td>${students[i].mssv}</td>
+			<td>${students[i].name}</td>
+			<td>${students[i].dateOfBirth}</td>
+			<td>${students[i].gender}</td>
+			<td>${students[i].address}</td>
 		</tr>
 		`;
-	})
+	}
+	// for (let i = size; i < 10; i ++) {
+	// 	htm += `
+	// 	<tr>
+	// 		<td>a</td>
+	// 		<td>a</td>
+	// 		<td>a</td>
+	// 		<td>a</td>
+	// 		<td>a</td>
+	// 		<td>a</td>
+	// 	</tr>
+	// 	`;
+	// }
+
 	let tbodyRows = $('#tbodyRows');
 	tbodyRows.empty();
 	tbodyRows.append(htm);
@@ -102,6 +116,8 @@ async function doMovetoOtherPage(pageNumber) {
 async function showDeleteWindow(mssv) {
 	let data = await getStudentByMssv(mssv);
 	let student = data.student;
+	$("input[name='mssvDelete']").val(student.mssv);
+	$("input[name='nameDelete']").val(student.name);
 
 }
 

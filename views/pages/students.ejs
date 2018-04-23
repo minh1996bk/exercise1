@@ -126,28 +126,52 @@
 		<div class="modal-body">
 				<div class="inputElement">
 					<label>Mã sinh viên</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="mssvInsert">
 				</div>
 				<div class="inputElement">
 					<label>Họ tên</label>
-					<inputclass="input" type="text">
+					<input class="input" type="text" name="nameInsert">
 				</div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="dateOfBirthInsert">
 				</div>
 				<div class="inputElement">
 					<label>Giới tính</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="genderInsert">
 				</div>
 				<div class="inputElement">
 					<label>Địa chỉ</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="addressInsert">
 				</div>
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-default" onclick="doInsertStudent()">Thực thi</button>
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="modal" id="divDeleteModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Xóa sinh viên khỏi danh sách</h4>
+		</div>
+		<div class="modal-body">
+				<div class="inputElement">
+					<label>Mã sinh viên</label>
+					<input class="input" type="text" name="mssvDelete" readonly>
+				</div>
+				<div class="inputElement">
+					<label>Họ tên</label>
+					<input class="input" type="text" name="nameDelete" readonly>
+				</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default" onclick="doDeleteStudent()">Thực thi</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
 		</div>
 		</div>
 	</div>

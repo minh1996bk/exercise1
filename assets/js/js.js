@@ -2,6 +2,15 @@ var currentPage;
 var sortField;
 var sortOrder;
 var searchString;
+var constraint = {
+	mssv: [
+		function isEightDigits(val) {
+			let check = /^\d{8}$/.test(val);
+			if (!check) return "Mã sô sinh viên phải gồm 8 chữ số"
+
+		}
+	]
+}
 function getStudents(criteria) {
 	criteria = criteria || {};
 	let url = `/getStudents?
@@ -71,25 +80,25 @@ function renderNumberPage(totalStudent, currentPage) {
 	let htm;
 	htm = `
 		<ul>
-			<li><button onclick="doMovetoOtherPage(1)">First</button></li>
-			<li><button onclick="doMovetoOtherPage(${prev})"><<</button></li>
+			<li><button class="btn" onclick="doMovetoOtherPage(1)">First</button></li>
+			<li><button class="btn" onclick="doMovetoOtherPage(${prev})"><<</button></li>
 	`;
 
 	for (let i = startIndex; i <= endIndex; i ++) {
 		if (currentPage === i) {
 			htm += `
-			<li><button class="btnSelected" disabled onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>`;
+			<li><button class="btn btnSelected" disabled onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>`;
 		} else {
 			htm += `
-				<li><button onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>
+				<li><button class="btn" onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>
 			`;
 		}
 		
 	}
 
 	htm += `
-			<li><button onclick="doMovetoOtherPage(${next})">>></button></li>
-			<li><button onclick="doMovetoOtherPage(${totalPage})">Last</button></li>
+			<li><button class="btn" onclick="doMovetoOtherPage(${next})">>></button></li>
+			<li><button class="btn" onclick="doMovetoOtherPage(${totalPage})">Last</button></li>
 		</ul>
 	`;
 	let spanInfo = $('#spanInfo');
@@ -206,6 +215,30 @@ async function onOrderStateChange(_sortField, _sortOrder) {
 	renderNumberPage(data.totalStudent, 1);
 }
 
+function checkInputData(id, constraints, divReportId) {
+	let length = constraints.length;
+	let error;
+	let val = $(`#${id}`);
+	for (let i = 0; i < length; i ++) {
+		error = constraints[i](val);
+		if (error) {
+			return reportError(divReportId, error);
+		}
+	}
+	return success(divReportId);
+}
+
+function reportError(id, error) {
+	let divReport = $(`#${id}`);
+	let htm = `${error}`;
+	divReport.empty();
+	divReport.append(htm);
+}
+
+function success(id) {
+	let divReport = $(`#${id}`);
+	divReport.empty();
+}
 
 (async function() {
 	let data = await getStudents();

@@ -5,11 +5,16 @@ var searchString;
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {
-			let check = /^\d{8}$/.test(val);
+			let _val = parseInt(val);
+			let check = /^\d{8}$/.test(_val);
 			if (!check) return "Mã sô sinh viên phải gồm 8 chữ số"
 
 		}
-	]
+	],
+	name: [],
+	dateOfBirth: [],
+	gender: [],
+	address: []
 }
 function getStudents(criteria) {
 	criteria = criteria || {};
@@ -218,7 +223,7 @@ async function onOrderStateChange(_sortField, _sortOrder) {
 function checkInputData(id, constraints, divReportId) {
 	let length = constraints.length;
 	let error;
-	let val = $(`#${id}`);
+	let val = $(`#${id}`).val();
 	for (let i = 0; i < length; i ++) {
 		error = constraints[i](val);
 		if (error) {

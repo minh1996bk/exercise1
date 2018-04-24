@@ -124,27 +124,33 @@
 			<h4 class="modal-title">Thêm sinh viên mới</h4>
 		</div>
 		<div class="modal-body">
+
 				<div class="inputElement">
 					<label>Mã sinh viên</label>
-					<input id="inputNameInsert" class="input" type="text" name="mssvInsert" oninput="checkInputData('inputNameInsert', constraint.mssv, 'nameInsertError')">
+					<input id="inputMssvInsert" class="input" type="text" name="mssvInsert" oninput="checkInputData('inputMssvInsert', constraint.mssv, 'mssvInsertError')">
 				</div>
-				<div id="nameInsertError"></div>
+				<div id="mssvInsertError" class="divReportError"></div>
+
 				<div class="inputElement">
 					<label>Họ tên</label>
-					<input class="input" type="text" name="nameInsert">
+					<input id="inputNameInsert" class="input" type="text" name="nameInsert" oninput="checkInputData('inputNameInsert', constraint.name, 'nameInsertError')">
 				</div>
+				<div id="nameInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<input class="input" type="text" name="dateOfBirthInsert">
+					<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBithInsertError')">
 				</div>
+				<div id="dateOfBirthInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Giới tính</label>
-					<input class="input" type="text" name="genderInsert">
+					<input id="inputGenderInsert" class="input" type="text" name="genderInsert" oninput="checkInputData('inputGenderInsert', constraint.gender, 'genderInsertError')">
 				</div>
+				<div id="genderInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Địa chỉ</label>
-					<input class="input" type="text" name="addressInsert">
+					<input id="inputAddressInsert" class="input" type="text" name="addressInsert" oninput="checkInputData('inputAddressInsert', constraint.address, 'addressInsertError')">
 				</div>
+				<div id="addressInsertError" class="divReportError"></div>
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-default" onclick="doInsertStudent()">Thực thi</button>

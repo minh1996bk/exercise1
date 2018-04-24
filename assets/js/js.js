@@ -20,11 +20,11 @@ var constraint = {
 	],
 	dateOfBirth: [
 		function isValidDate(val) {
-			console.log(val);
-			try {
-				new Date(val);
-			} catch (err) {
-				return "Ngày sinh không hợp lệ";
+			let date = new Date(val);
+			let check = /\d\d\d\d\-\d\d\-\d\d/.test(val);
+			let isDate = date.toString() === 'Invalid Date';
+			if (isDate || !check) {
+				return "Nhập ngày định dạng yyyy-MM-dd";
 			}
 		}
 	],

@@ -90,24 +90,29 @@
 		<div class="modal-body">
 				<div class="inputElement">
 					<label>Mã sinh viên</label>
-					<input class="input" type="text" name="mssvUpdate" readonly>
+					<input id="inputMssvUpdate" class="input" type="text" name="mssvUpdate" oninput="checkInputData('inputMssvUpdate', constraint.mssv, 'mssvUpdateError')" readonly>
 				</div>
+				<div id="mssvUpdateError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Họ tên</label>
-					<input class="input" type="text" name="nameUpdate">
+					<input id="inputNameUpdate" class="input" type="text" name="nameUpdate" oninput="checkInputData('inputNameUpdate', constraint.name, 'nameUpdateError')">
 				</div>
+				<div id="nameUpdateError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<input class="input" type="text" name="dateOfBirthUpdate">
+					<input id="inputDateOfBirthUpdate" class="input" type="text" name="dateOfBirthUpdate" oninput="checkInputData('inputDateOfBirthUpdate', constraint.dateOfBirth, 'dateOfBirthUpdateError')">
 				</div>
+				<div id="dateOfBirthUpdateError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Giới tính</label>
-					<input class="input" type="text" name="genderUpdate">
+					<input id="inputGenderUpdate" class="input" type="text" name="genderUpdate" oninput="checkInputData('inputGenderUpdate', constraint.gender, 'genderUpdateError')">
 				</div>
+				<div id="genderUpdateError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Địa chỉ</label>
-					<input class="input" type="text" name="addressUpdate">
+					<input id="inputAddressUpdate" class="input" type="text" name="addressUpdate" oninput="checkInputData('inputAddressUpdate', constraint.address, 'addressUpdateError')">
 				</div>
+				<div id="addressUpdateError" class="divReportError"></div>
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-default" onclick="doUpdateStudent()">Thực thi</button>
@@ -138,7 +143,7 @@
 				<div id="nameInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBithInsertError')">
+					<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')">
 				</div>
 				<div id="dateOfBirthInsertError" class="divReportError"></div>
 				<div class="inputElement">

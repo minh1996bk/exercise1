@@ -18,9 +18,30 @@ var constraint = {
 
 		}
 	],
-	dateOfBirth: [],
-	gender: [],
-	address: []
+	dateOfBirth: [
+		function isValidDate(val) {
+			console.log(val);
+			try {
+				new Date(val);
+			} catch (err) {
+				return "Ngày sinh không hợp lệ";
+			}
+		}
+	],
+	gender: [
+		function isValidGender(val) {
+			if (!["Nam", "Nữ"].includes(val)) {
+				return "Chọn giới tính Nam hoặc Nữ";
+			}
+		}
+	],
+	address: [
+		function onlyVietCharacter(val) {
+			let check =  /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/.test(val);
+			if (!check) return "Họ tên chỉ chữ cái khoảng trắng";
+
+		}
+	]
 }
 function getStudents(criteria) {
 	criteria = criteria || {};
@@ -59,18 +80,6 @@ function renderStudents(students) {
 		</tr>
 		`;
 	}
-	// for (let i = size; i < 10; i ++) {
-	// 	htm += `
-	// 	<tr>
-	// 		<td>a</td>
-	// 		<td>a</td>
-	// 		<td>a</td>
-	// 		<td>a</td>
-	// 		<td>a</td>
-	// 		<td>a</td>
-	// 	</tr>
-	// 	`;
-	// }
 
 	let tbodyRows = $('#tbodyRows');
 	tbodyRows.empty();

@@ -2,18 +2,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div id="main">
-	<header><h2>Hệ thống quản lý sinh viên</h2></header>
+	<header class="center"><h2>Hệ thống quản lý sinh viên</h2></header>
 	<div id="content">
-		<div id="divInfo">
+		<div id="divInfo" class="center">
 			<p>Đang xem <span id="spanInfo"></span></p>
 		</div>
-		<div id="divInsert">
+		<div id="divInsert" class="center">
 			
 			<button type="button" class="btn" data-toggle="modal" data-target="#divInsertModal">
 				<i class="glyphicon glyphicon-plus"></i>Thêm sinh viên
 			</button>
 		</div>
-		<div id="divSearch">
+		<div id="divSearch" class="center">
 			<button id="btnSearch"><i class="glyphicon glyphicon-search"></i>Tìm kiếm</button>
 			<input type="text" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
 		</div>
@@ -73,7 +73,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="divPageNumber"></div>
+		<div id="divPageNumber" class="center"></div>
 	</div>
 	<footer>
 		<div id="divTimeInfo"></div>
@@ -126,8 +126,9 @@
 		<div class="modal-body">
 				<div class="inputElement">
 					<label>Mã sinh viên</label>
-					<input class="input" type="text" name="mssvInsert">
+					<input id="inputNameInsert" class="input" type="text" name="mssvInsert" oninput="checkInputData('inputNameInsert', constraint.mssv, 'nameInsertError')">
 				</div>
+				<div id="nameInsertError"></div>
 				<div class="inputElement">
 					<label>Họ tên</label>
 					<input class="input" type="text" name="nameInsert">

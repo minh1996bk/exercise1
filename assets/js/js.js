@@ -11,7 +11,13 @@ var constraint = {
 
 		}
 	],
-	name: [],
+	name: [
+		function onlyVietCharacter(val) {
+			let check =  /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]+$/.test(val);
+			if (!check) return "Họ tên chỉ chữ cái khoảng trắng";
+
+		}
+	],
 	dateOfBirth: [],
 	gender: [],
 	address: []

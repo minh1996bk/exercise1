@@ -95,6 +95,14 @@ module.exports = {
     },
     deleteStudent: async function deleteStudent(req, res) {
         let mssv = req.body.mssv;
+        if (!mssv) {
+            return res.json({
+                success: false,
+                errors: {
+                    mssv: "Mã số sinh viên gồm 8 tám chữ số"
+                }
+            })
+        }
         await Student.destroy({'mssv': mssv});
 
         return res.json({

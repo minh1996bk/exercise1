@@ -150,7 +150,8 @@ async function showDeleteWindow(mssv) {
 
 }
 
-async function sendDeleteRequest(mssv) {
+async function doDeleteStudent() {
+	let mssv = $("input[name='mssvDelete']").val();
 	let results = await $.post('/delete-student', {
 		mssv: mssv
 	});
@@ -158,7 +159,8 @@ async function sendDeleteRequest(mssv) {
 		return report500Error();
 	}
 	if (results.success) {
-		return reprotSuccess();
+		$('#divDeleteModal').modal('toggle');
+		return reprotSuccess("Xóa sinh viên thành công");
 	} else if (results.errors) {
 		return reportServerErrors(results.errors);
 	} else {
@@ -195,7 +197,8 @@ async function doUpdateStudent() {
 		return report500Error();
 	}
 	if (results.success) {
-		return reprotSuccess();
+		$('#divUpdateModal').modal('toggle');
+		return reprotSuccess("Cập nhật thông tin sinh viên thành công");
 	} else if (results.errors) {
 		return reportServerErrors(results.errors);
 	} else {

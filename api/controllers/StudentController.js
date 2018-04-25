@@ -152,27 +152,7 @@ module.exports = {
         })
     },
 
-    getAddPage: async function getAddPage(req, res) {
-    
-        let errors = req.session.errors;
-        let success = req.session.success;
-        delete req.session.errors;
-        delete req.session.success;
-        return res.view('pages/add-student', {
-            errors: errors,
-            success: success
-        });
-    },
 
-    getDeletePage: async function getDeletePage(req, res) {
-        let mssv = req.session.mssv;
-        let name = req.session.name;
-    
-        return res.view('pages/delete-student', {
-            mssv: mssv,
-            name: name
-        })
-    },
     getListPage: async function getListPage(req, res) {
         res.view('pages/students');
     }

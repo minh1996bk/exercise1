@@ -154,7 +154,16 @@ async function sendDeleteRequest(mssv) {
 	let results = await $.post('/delete-student', {
 		mssv: mssv
 	});
-	console.log(results);
+	if (!results) {
+		return report500Error();
+	}
+	if (results.success) {
+		return reprotSuccess();
+	} else if (results.errors) {
+		return reportServerErrors(results.errors);
+	} else {
+		return report500Error();
+	}
 }
 
 async function showUpdateWindow(mssv) {
@@ -179,30 +188,69 @@ async function doUpdateStudent() {
 		name: name,
 		dateOfBirth: dateOfBirth,
 		gender: gender,
-		address: gender
+		address: address
 	}
 	let results = await $.post('/update-student', student);
-	console.log(results);
+	if (!results) {
+		return report500Error();
+	}
+	if (results.success) {
+		return reprotSuccess();
+	} else if (results.errors) {
+		return reportServerErrors(results.errors);
+	} else {
+		return report500Error();
+	}
 }
 
 
 async function doInsertStudent() {
-	let mssv = $("input[name='mssv']").val();
-	let name = $("input[name='name']").val();
-	let dateOfBirth = $("input[name='dateOfBirth']").val();
-	let gender = $("input[name='gender']").val();
-	let address = $("input[name='address']").val();
+	let mssv = $("input[name='mssvInsert']").val();
+	let name = $("input[name='nameInsert']").val();
+	let dateOfBirth = $("input[name='dateOfBirthInsert']").val();
+	let gender = $("input[name='genderInsert']").val();
+	let address = $("input[name='addressInsert']").val();
 
 	let student = {
 		mssv: mssv,
 		name: name,
 		dateOfBirth: dateOfBirth,
 		gender: gender,
-		address: gender
+		address: address
 	}
-	let results = await $.post('/student', student);
-	console.log(results);
 
+	let results = await $.post('/student', student);
+
+	if (!results) {
+		return report500Error();
+	}
+	if (results.success) {
+		$('#divInsertModal').modal('toggle');
+		return reprotSuccess("Thêm sinh viên thành công");
+	} else if (results.errors) {
+		return reportServerErrors(results.errors);
+	} else {
+		return report500Error();
+	}
+
+}
+
+
+function report500Error() {
+
+}
+
+function reprotSuccess(report) {
+	let reportSuccessModal = $('#divReportSuccess');
+	$('#hReport').text(report);
+	reportSuccessModal.modal('show');
+	setTimeout(function() {
+		reportSuccessModal.modal('toggle');
+	}, 1000);
+}
+
+function reportServerErrors(errors) {
+	
 }
 
 function closePopup() {
@@ -242,20 +290,20 @@ function checkInputData(id, constraints, divReportId) {
 	for (let i = 0; i < length; i ++) {
 		error = constraints[i](val);
 		if (error) {
-			return reportError(divReportId, error);
+			return reportInputError(divReportId, error);
 		}
 	}
-	return success(divReportId);
+	return successInput(divReportId);
 }
 
-function reportError(id, error) {
+function reportInputError(id, error) {
 	let divReport = $(`#${id}`);
 	let htm = `${error}`;
 	divReport.empty();
 	divReport.append(htm);
 }
 
-function success(id) {
+function successInput(id) {
 	let divReport = $(`#${id}`);
 	divReport.empty();
 }

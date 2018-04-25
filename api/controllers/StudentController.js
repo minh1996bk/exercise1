@@ -24,7 +24,7 @@ module.exports = {
             address: _address
         }
        
-
+        console.log(student);
         let testResult = await sails.helpers.validateStudent(student);
         if (testResult) {
 
@@ -96,10 +96,10 @@ module.exports = {
     deleteStudent: async function deleteStudent(req, res) {
         let mssv = req.body.mssv;
         await Student.destroy({'mssv': mssv});
-        delete req.session.mssv;
-        delete req.session.name;
-        
-        return res.redirect('students');
+
+        return res.json({
+            success: true
+        })
     },
 
     getStudents: async function getStudents(req, res) {

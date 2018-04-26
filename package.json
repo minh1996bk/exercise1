@@ -11,6 +11,7 @@
     "accessible": "^0.1.0",
     "async": "^2.0.1",
     "coffeescript": "^2.2.4",
+    "googleapis": "^27.0.0",
     "load-grunt-tasks": "^3.5.2",
     "lodash": "^4.17.5",
     "sails": "^1.0.0",

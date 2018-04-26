@@ -1,7 +1,8 @@
-var currentPage;
-var sortField;
-var sortOrder;
-var searchString;
+var currentPage = 1;
+var sortField = 'mssv';
+var sortOrder = 'ASC';
+var searchString = "";
+var recordCount = 10;
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {
@@ -46,11 +47,11 @@ var constraint = {
 function getStudents(criteria) {
 	criteria = criteria || {};
 	let url = `/getStudents?
-		pageNumber=${criteria.pageNumber || 1}
-		&recordCount=${criteria.recordCount || 10}
-		&searchString=${criteria.searchString || ""}
-		&sortField=${criteria.sortField || 'mssv'}
-		&sortOrder=${criteria.sortOrder || 'ASC'}
+		pageNumber=${criteria.pageNumber || currentPage}
+		&recordCount=${criteria.recordCount || recordCount}
+		&searchString=${criteria.searchString || searchString}
+		&sortField=${criteria.sortField || sortField}
+		&sortOrder=${criteria.sortOrder || sortOrder}
 	`;
 	return $.get(url)
 }
@@ -283,7 +284,7 @@ async function onOrderStateChange(_sortField, _sortOrder) {
 	sortOrder = _sortOrder;
 	let data = await getStudents(criteria);
 	renderStudents(data.students);
-	renderNumberPage(data.totalStudent, 1);
+	renderNumberPage(data.totalStudent, currentPage);
 }
 
 function checkInputData(id, constraints, divReportId) {
@@ -309,6 +310,16 @@ function reportInputError(id, error) {
 function successInput(id) {
 	let divReport = $(`#${id}`);
 	divReport.empty();
+}
+
+async function searchStudent() {
+	let inputSearch = $('#inputSearch');
+	let searchVal = inputSearch.val();
+	searchString = searchVal;
+	let response = await getStudents();
+	renderStudents(response.students);
+	renderNumberPage(response.totalStudent, 1);
+	console.log(searchVal);
 }
 
 (async function() {

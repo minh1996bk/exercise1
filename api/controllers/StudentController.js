@@ -24,7 +24,7 @@ module.exports = {
             address: _address
         }
        
-        console.log(student);
+    
         let testResult = await sails.helpers.validateStudent(student);
         if (testResult) {
 
@@ -111,13 +111,32 @@ module.exports = {
     },
 
     getStudents: async function getStudents(req, res) {
+        
         let sortField = req.query.sortField;
         let sortOrder = req.query.sortOrder;
         let pageNumber = parseInt(req.query.pageNumber);
         let recordCount = parseInt(req.query.recordCount);
         let searchString = req.query.searchString;
 
-        let students = await Student.find({})
+        let students = await Student.find({
+            or: [
+                {
+                    mssv: {
+                        contains: searchString
+                    }
+                },
+                {
+                    name: {
+                        contains: searchString
+                    }
+                },
+                {
+                    address: {
+                        contains: searchString
+                    }
+                }
+            ]
+        })
         .sort(`${sortField} ${sortOrder}`)
         .skip((pageNumber - 1) * recordCount)
         .limit(recordCount);

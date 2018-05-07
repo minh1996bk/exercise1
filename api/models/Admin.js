@@ -1,6 +1,15 @@
 module.exports = {
     attributes: {
-        username: 'string',
-        password: 'string'
+        account: {
+            model: 'account',
+        },
+        position: {
+            type: 'string',
+            required: true
+        },
+        workDate: {
+            type: 'string',
+            columnType: 'datetime'
+        }
     }
 }

@@ -3,6 +3,7 @@ var sortField = 'mssv';
 var sortOrder = 'ASC';
 var searchString = "";
 var recordCount = 10;
+var students;
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {
@@ -67,17 +68,18 @@ function renderStudents(students) {
 	for (let i = 0; i < size; i ++) {
 		htm += `
 		<tr>
-			<td>
-				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">
-					<i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa
-				</button>
-				<button class="btn" data-toggle="modal" data-target="#divDeleteModal" onclick="showDeleteWindow(${students[i].mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
-			</td>
+			
 			<td>${students[i].mssv}</td>
 			<td>${students[i].name}</td>
 			<td>${students[i].dateOfBirth}</td>
 			<td>${students[i].gender}</td>
 			<td>${students[i].address}</td>
+			<td>
+				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">Chỉnh sửa
+					<i class="glyphicon glyphicon-pencil"></i>
+				</button>
+				<button class="btn" data-toggle="modal" data-target="#divDeleteModal" onclick="showDeleteWindow(${students[i].mssv})">Xóa<i class="glyphicon glyphicon-remove"></i></button>
+			</td>
 		</tr>
 		`;
 	}
@@ -325,5 +327,6 @@ async function searchStudent() {
 (async function() {
 	let data = await getStudents();
 	renderStudents(data.students);
+	students = data.students;
 	renderNumberPage(data.totalStudent, currentPage);
 })();

@@ -1,8 +1,15 @@
+var students;
+var totalStudent;
 var currentPage = 1;
-var sortField = 'mssv';
-var sortOrder = 'ASC';
 var searchString = "";
 var recordCount = 10;
+
+var mssvOrder;
+var nameOrder;
+var dateOfBirthOrder;
+var genderOrder;
+var addressOrder;
+
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {
@@ -50,15 +57,18 @@ function getStudents(criteria) {
 		pageNumber=${criteria.pageNumber || currentPage}
 		&recordCount=${criteria.recordCount || recordCount}
 		&searchString=${criteria.searchString || searchString}
-		&sortField=${criteria.sortField || sortField}
-		&sortOrder=${criteria.sortOrder || sortOrder}
 	`;
-	return $.get(url)
+	return $.get(url);
 }
 
 function getStudentByMssv(mssv) {
 	let url = `/student/${mssv}`;
 	return $.get(url);
+}
+
+function formatDate(dateString) {
+	let arr = dateString.split('-');
+	return [arr[2], arr[1], arr[0]].join('-');
 }
 
 function renderStudents(students) {
@@ -67,17 +77,18 @@ function renderStudents(students) {
 	for (let i = 0; i < size; i ++) {
 		htm += `
 		<tr>
+			
+			<td style="padding: 5px;">${students[i].mssv}</td>
+			<td>${students[i].name}</td>
+			<td>${formatDate(students[i].dateOfBirth)}</td>
+			<td>${students[i].gender}</td>
+			<td>${students[i].address}</td>
 			<td>
 				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">
 					<i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa
 				</button>
 				<button class="btn" data-toggle="modal" data-target="#divDeleteModal" onclick="showDeleteWindow(${students[i].mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
 			</td>
-			<td>${students[i].mssv}</td>
-			<td>${students[i].name}</td>
-			<td>${students[i].dateOfBirth}</td>
-			<td>${students[i].gender}</td>
-			<td>${students[i].address}</td>
 		</tr>
 		`;
 	}
@@ -108,7 +119,7 @@ function renderNumberPage(totalStudent, currentPage) {
 	for (let i = startIndex; i <= endIndex; i ++) {
 		if (currentPage === i) {
 			htm += `
-			<li><button class="btn btnSelected" disabled onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>`;
+			<li><button class="btn btnSelected" style="background-color: #c4c5c6;" disabled onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>`;
 		} else {
 			htm += `
 				<li><button class="btn" onclick="doMovetoOtherPage(${i})">${("00" + i).slice(-2)}</button></li>
@@ -133,8 +144,6 @@ function renderNumberPage(totalStudent, currentPage) {
 async function doMovetoOtherPage(pageNumber) {
 	let criteria = {
 		pageNumber: pageNumber,
-		sortField: sortField,
-		sortOrder: sortOrder,
 		searchString: searchString,
 	}
 	let data = await getStudents(criteria);
@@ -263,28 +272,60 @@ function closePopup() {
 	divPopup.hide();
 }
 
-async function onOrderStateChange(_sortField, _sortOrder) {
+function sapXepMssv() {
+	
+	mssvOrder = mssvOrder || 'ASC';
+	mssvOrder = mssvOrder == 'ASC' ? 'DESC' : 'ASC';
+	onOrderStateChange('mssv', mssvOrder);
+	thayDoiIconKhiSapXep('icon-mssv', mssvOrder);
+}
 
-	let divSortField = $(`div#${_sortField}`);
-	let newSortOrder = _sortOrder === 'ASC' ? 'DESC' : 'ASC';
-	let iconClass = _sortOrder === 'ASC' ? "glyphicon glyphicon-circle-arrow-down" : "glyphicon glyphicon-circle-arrow-up";
-	let htm = `
-		<button class="btnChangeOrder" onclick="onOrderStateChange('${_sortField}', '${newSortOrder}')">
-			<i class="${iconClass}"></i>
-		</button>
-	`;
-	divSortField.empty();
-	divSortField.append(htm);
+function sapXepTen() {
+	nameOrder = nameOrder || 'ASC';
+	nameOrder = nameOrder == 'ASC' ? 'DESC' : 'ASC';
+	onOrderStateChange('name', nameOrder);
+	thayDoiIconKhiSapXep('icon-name', nameOrder);
+}
 
-	let criteria = {
-		sortField : _sortField, 
-		sortOrder: _sortOrder
-	}
-	sortField = _sortField;
-	sortOrder = _sortOrder;
-	let data = await getStudents(criteria);
-	renderStudents(data.students);
-	renderNumberPage(data.totalStudent, currentPage);
+function sapXepGioiTinh() {
+	genderOrder = genderOrder || 'ASC';
+	genderOrder = genderOrder == 'ASC' ? 'DESC' : 'ASC';
+	onOrderStateChange('gender', genderOrder);
+	thayDoiIconKhiSapXep('icon-gender', genderOrder);
+}
+
+
+function sapXepNgaySinh() {
+	dateOfBirthOrder = dateOfBirthOrder || 'ASC';
+	dateOfBirthOrder = dateOfBirthOrder == 'ASC' ? 'DESC' : 'ASC';
+	onOrderStateChange('dateOfBirth', dateOfBirthOrder);
+	thayDoiIconKhiSapXep('icon-dob', dateOfBirthOrder);
+}
+
+function sapXepDiaChi() {
+	addressOrder = addressOrder || 'ASC';
+	addressOrder = addressOrder == 'ASC' ? 'DESC' : 'ASC';
+	onOrderStateChange('address', addressOrder);
+	thayDoiIconKhiSapXep('icon-address', addressOrder);
+}
+
+function onOrderStateChange(_sortField, _sortOrder) {
+	students = students.sort((st1, st2) => {
+		if (_sortOrder == 'ASC') {
+			if (st1[_sortField] > st2[_sortField]) return 1;
+			if (st1[_sortField] == st2[_sortField]) return 0;
+			if (st1[_sortField] < st2[_sortField]) return -1;
+			
+		} else {
+			if (st1[_sortField] < st2[_sortField]) return 1;
+			if (st1[_sortField] == st2[_sortField]) return 0;
+			if (st1[_sortField] > st2[_sortField]) return -1;
+		}
+	})
+	
+	
+	renderStudents(students);
+	renderNumberPage(totalStudent, currentPage);
 }
 
 function checkInputData(id, constraints, divReportId) {
@@ -317,13 +358,26 @@ async function searchStudent() {
 	let searchVal = inputSearch.val();
 	searchString = searchVal;
 	let response = await getStudents();
+	students = response.students;
+	totalStudent = response.totalStudent;
 	renderStudents(response.students);
 	renderNumberPage(response.totalStudent, 1);
-	console.log(searchVal);
+
 }
 
 (async function() {
 	let data = await getStudents();
+	students = data.students;
+	totalStudent = data.totalStudent;
+	
 	renderStudents(data.students);
 	renderNumberPage(data.totalStudent, currentPage);
 })();
+
+function thayDoiIconKhiSapXep(iconId, _sortOrder) {
+	let oldIconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-up' : 'glyphicon-circle-arrow-down';
+	let iconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-down' : 'glyphicon-circle-arrow-up';
+	$(`#${iconId}`).removeClass(oldIconClass);
+	$(`#${iconId}`).addClass(iconClass);
+
+}

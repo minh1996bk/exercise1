@@ -137,7 +137,6 @@ module.exports = {
                 }
             ]
         })
-        .sort(`${sortField} ${sortOrder}`)
         .skip((pageNumber - 1) * recordCount)
         .limit(recordCount);
 

@@ -10,6 +10,10 @@ var dateOfBirthOrder;
 var genderOrder;
 var addressOrder;
 
+$(document).ready(function() {
+	$('#datetimepicker1').datetimepicker();
+
+})
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {
@@ -387,4 +391,17 @@ function thayDoiIconKhiSapXep(iconId, _sortOrder) {
 	$(`#${iconId}`).removeClass(oldIconClass);
 	$(`#${iconId}`).addClass(iconClass);
 
+}
+function showDiv(){
+	let val = document.getElementById("boloc").value;
+	let divIds = ['masv','ngaysinh','gioitinh', 'diachi'];
+	divIds.forEach(divId => {
+		if (divId == val) {
+			document.getElementById(divId).style.display = "block";
+		} else {
+			document.getElementById(divId).style.display = "none";
+		}
+	})
+
+	
 }

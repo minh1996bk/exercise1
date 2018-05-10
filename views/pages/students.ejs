@@ -15,42 +15,42 @@
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#divInsertModal" style="margin-left: 73px;">
 				<i class="glyphicon glyphicon-plus"></i>Thêm sinh viên
 			</button><br>
-			<div id="loc" style="float: left;">
-				<label for="">Bộ lọc</label>
+			<div id="loc">
+				<label>Bộ lọc</label>
 				<select name="boloc" id="boloc" onchange=showDiv();>
 					<option></option>
 					<option value="masv">Mã sinh viên</option>
 					<option value="ngaysinh">Ngày sinh</option>
-					<option value="masv">Giới tính</option>
+					<option value="gioitinh">Giới tính</option>
 					<option value="diachi">Địa chỉ</option>
 				</select>
 				
 				<div id="masv" style="display: none;">
-					<label for="">Giá trị msv</label>
+					<label for="">Giá trị </label>
 					<select name="masv" id="">
-						<option value="asc">asc</option>
-						<option value="dsc">dsc</option>
+						<option value="asc">Tăng dần</option>
+						<option value="dsc">Giảm dần</option>
 					</select>
 				</div>
 				<div id="ngaysinh" style="display: none;">
-					<label for="">Giá trị ngay sinh</label>
-					<select name="masv" id="">
-						<option value="asc">asc</option>
-						<option value="dsc">dsc</option>
+					<label for="">Giá trị</label>
+					<select name="ngaysinh" id="">
+						<option value="asc">Tăng dần</option>
+						<option value="dsc">Giảm dần</option>
 					</select>
 				</div>
 				<div id="gioitinh" style="display: none;">
-					<label for="">Giá trị msv</label>
-					<select name="masv" id="">
-						<option value="asc">asc</option>
-						<option value="dsc">dsc</option>
+					<label for="">Giá trị</label>
+					<select name="gioitinh" id="">
+						<option value="Nam">Nam</option>
+						<option value="Nu">Nữ</option>
 					</select>
 				</div>
 				<div id="diachi" style="display: none;">
-					<label for="">Giá trị địa chỉ</label>
+					<label for="">Giá trị</label>
 					<select name="dc" id="">
-						<option value="asc11">asc</option>
-						<option value="dsc11">dsc</option>
+						<option value="asc">Tăng dần</option>
+						<option value="dsc">Giảm dần</option>
 					</select>
 				</div>
 				
@@ -187,9 +187,8 @@
 				<div id="nameInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<!-- <input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')"> -->
-					<div class='input-group date' id='datetimepicker1' style="width: 53%;
-    float: right;">
+						<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')">
+		
 						<input type='text' class="form-control" id="inputDateOfBirthInsert" />
 						<span class="input-group-addon">
 						<span class="glyphicon glyphicon-calendar"></span>

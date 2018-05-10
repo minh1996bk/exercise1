@@ -1,14 +1,10 @@
 
-
-
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <div id="main">
 	<header class="center"><h1 style="color:#36bf36">Hệ thống quản lý sinh viên</h1></header>
 	<div id="content">
@@ -16,11 +12,10 @@
 			<p>Đang xem <span id="spanInfo"></span></p>
 		</div>
 		<div id="divInsert" >
-			
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#divInsertModal" style="margin-left: 73px;">
 				<i class="glyphicon glyphicon-plus"></i>Thêm sinh viên
 			</button><br>
-			<div id="loc">
+			<div id="loc" style="float: left;">
 				<label for="">Bộ lọc</label>
 				<select name="boloc" id="boloc" onchange=showDiv();>
 					<option></option>
@@ -61,70 +56,65 @@
 				
 			</div>
 		</div>
-		<div id="divSearch"  style="width: 23%;
-		float: right;">
-			<input type="text" style="    padding-left: 5px;
-			padding: 10px;
-			border-color: green;
-		" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
-			<button class="btn btn-success"  id="btnSearch" onclick="searchStudent()" style="padding: 5px;">Tìm kiếm<i style="margin: 5px;" class="glyphicon glyphicon-search"></i></button>
-			
+		<div id="divSearch"  style="width: 23%;float: right;">
+			<input type="text" style="padding-left: 5px; padding: 10px;border-color: green;" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
+			<button class="btn btn-success"  id="btnSearch" onclick="searchStudent()" style="padding: 5px;">
+				Tìm kiếm
+				<i style="margin: 5px;" class="glyphicon glyphicon-search"></i>
+			</button>
 		</div>
 		<div id="divTable">
 			<table cellpadding="7">
 				<caption>Danh sách sinh viên</caption>
 				<thead>
-						
-						<th class="headColumn">
-							<div class="inTh">
-								Mã Sinh Viên
-							</div>
-							<div id="mssv" class="inTh">
-								<button class="btnChangeOrder" onclick="sapXepMssv()">
-									<i id="icon-mssv" class="glyphicon glyphicon-circle-arrow-up"></i>
-								</button>
-							</div>
-						</th>
-						<th class="headColumn">
-							<div class="inTh">Họ và Tên</div>
-							<div id="name" class="inTh">
-								<button class="btnChangeOrder" onclick="sapXepTen()">
-									<i id="icon-name" class="glyphicon glyphicon-circle-arrow-up">										
-									</i>
-								</button>
-							</div>
-						</th>
-						<th class="headColumn">
-							<div class="inTh">Ngày sinh</div>
-							<div id="dateOfBirth" class="inTh">
-								<button class="btnChangeOrder" onclick="sapXepNgaySinh()">
-										<i id="icon-dob" class="glyphicon glyphicon-circle-arrow-up"></i>
-								</button>
-							</div>
-						</th>
-						<th class="headColumn">
-							<div class="inTh">Giới tính</div>
-							<div id="gender" class="inTh">
-								<button class="btnChangeOrder" onclick="sapXepGioiTinh()">
-									<i id="icon-gender" class="glyphicon glyphicon-circle-arrow-up"></i>
-								</button>
-							</div>
-						</th>
-						<th class="headColumn">
-							<div class="inTh">Địa chỉ</div>
-							<div id="address" class="inTh">
-								<button class="btnChangeOrder" onclick="sapXepDiaChi()">
-									<i id="icon-address" class="glyphicon glyphicon-circle-arrow-up"></i>
-								</button>
-							</div>
-						</th>
-						<th class="option">
-							<p>Tùy chọn</p>
-						</th>
-					</tr>
+					<th class="headColumn">
+						<div class="inTh">
+							Mã Sinh Viên
+						</div>
+						<div id="mssv" class="inTh">
+							<button class="btnChangeOrder" onclick="sapXepMssv()">
+								<i id="icon-mssv" class="glyphicon glyphicon-circle-arrow-up"></i>
+							</button>
+						</div>
+					</th>
+					<th class="headColumn">
+						<div class="inTh">Họ và Tên</div>
+						<div id="name" class="inTh">
+							<button class="btnChangeOrder" onclick="sapXepTen()">
+								<i id="icon-name" class="glyphicon glyphicon-circle-arrow-up">										
+								</i>
+							</button>
+						</div>
+					</th>
+					<th class="headColumn">
+						<div class="inTh">Ngày sinh</div>
+						<div id="dateOfBirth" class="inTh">
+							<button class="btnChangeOrder" onclick="sapXepNgaySinh()">
+									<i id="icon-dob" class="glyphicon glyphicon-circle-arrow-up"></i>
+							</button>
+						</div>
+					</th>
+					<th class="headColumn">
+						<div class="inTh">Giới tính</div>
+						<div id="gender" class="inTh">
+							<button class="btnChangeOrder" onclick="sapXepGioiTinh()">
+								<i id="icon-gender" class="glyphicon glyphicon-circle-arrow-up"></i>
+							</button>
+						</div>
+					</th>
+					<th class="headColumn">
+						<div class="inTh">Địa chỉ</div>
+						<div id="address" class="inTh">
+							<button class="btnChangeOrder" onclick="sapXepDiaChi()">
+								<i id="icon-address" class="glyphicon glyphicon-circle-arrow-up"></i>
+							</button>
+						</div>
+					</th>
+					<th class="option">
+						<p>Tùy chọn</p>
+					</th>
 				</thead>
-				<tbody id="tbodyRows">
-				</tbody>
+				<tbody id="tbodyRows"></tbody>
 			</table>
 		</div>
 		<div id="divPageNumber" class="center"></div>

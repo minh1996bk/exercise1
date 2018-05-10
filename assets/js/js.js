@@ -394,6 +394,7 @@ function thayDoiIconKhiSapXep(iconId, _sortOrder) {
 }
 function showDiv(){
 	let val = document.getElementById("boloc").value;
+	// console.log(val);
 	let divIds = ['masv','ngaysinh','gioitinh', 'diachi'];
 	divIds.forEach(divId => {
 		if (divId == val) {

@@ -376,7 +376,12 @@ async function searchStudent() {
 
 function thayDoiIconKhiSapXep(iconId, _sortOrder) {
 	let iconIds = ['icon-mssv', 'icon-name', 'icon-dob', 'icon-gender', 'icon-address'];
-	iconIds
+	document.getElementById(`${iconId}`).style.backgroundColor = 'black';
+	iconIds.forEach(id => {
+		if (id != iconId) {
+			document.getElementById(`${id}`).style.backgroundColor = 'initial';
+		}
+	})
 	let oldIconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-up' : 'glyphicon-circle-arrow-down';
 	let iconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-down' : 'glyphicon-circle-arrow-up';
 	$(`#${iconId}`).removeClass(oldIconClass);

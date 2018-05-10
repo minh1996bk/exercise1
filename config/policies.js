@@ -17,7 +17,11 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': true,
-  // 'students': 'is-login'
+  StudentController : {
+    getStudent: 'Student/for-get',
+    addStudent: 'Student/for-add-student',
+    updateStudent: 'Student/for-add-student',
+    
+  }
 
 };

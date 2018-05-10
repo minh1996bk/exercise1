@@ -9,38 +9,14 @@ module.exports = {
     },
     
     addStudent: async function addStudent(req, res) {
-        let _mssv = req.body.mssv;
-        let _name = req.body.name;
-        let _dateOfBirth = req.body.dateOfBirth;
-        let _gender = req.body.gender;
-        let _address = req.body.address;
-        
-       
         let student = {
-            mssv: _mssv,
-            name: _name,
-            dateOfBirth: _dateOfBirth,
-            gender: _gender,
-            address: _address
+            mssv: req.body.mssv,
+            name: req.body.name,
+            dateOfBirth: req.body.dateOfBirth,
+            gender: req.body.gender,
+            address: req.body.address 
         }
-       
-    
-        let testResult = await sails.helpers.validateStudent(student);
-        if (testResult) {
-
-            let errors = {};
-            errors.mssvError = testResult.mssv;
-            errors.nameError = testResult.name;
-            errors.dateOfBirthError = testResult.dateOfBirth;
-            errors.genderError = testResult.gender;
-            errors.addressError = testResult.address;
-
-            return res.json({
-                success: false,
-                errors: errors
-            })
-        }
-
+        
        await Student.create(student);
 
         return res.json({
@@ -48,45 +24,13 @@ module.exports = {
         })
     },
     updateStudent: async function updateStudent(req, res) {
-        let _mssv = req.body.mssv;
-        let _name = req.body.name;
-        let _dateOfBirth = req.body.dateOfBirth;
-        let _gender = req.body.gender;
-        let _address = req.body.address;
-       
-       
-        let student = {
-            mssv: _mssv,
-            name: _name,
-            dateOfBirth: _dateOfBirth,
-            gender: _gender,
-            address: _address
-        }
-
-        let testResult = await sails.helpers.validateStudent(student);
-
-        if (testResult) {
-
-            let errors = {};
-            errors.mssvError = testResult.mssv;
-            errors.nameError = testResult.name;
-            errors.dateOfBirthError = testResult.dateOfBirth;
-            errors.genderError = testResult.gender;
-            errors.addressError = testResult.address;
-
-            return res.json({
-                success: false,
-                errors: errors
-            })
-        }
-
-
-        await Student.update({'mssv': _mssv})
+     
+        await Student.update({'mssv': req.body.mssv})
         .set({
-            name: _name,
-            dateOfBirth: _dateOfBirth,
-            gender: _gender,
-            address: _address
+            name: req.body.name,
+            dateOfBirth: req.body.dateOfBirth,
+            gender: req.body.gender,
+            address: req.body.address
         });
         
         return res.json({
@@ -111,9 +55,7 @@ module.exports = {
     },
 
     getStudents: async function getStudents(req, res) {
-        
-        let sortField = req.query.sortField;
-        let sortOrder = req.query.sortOrder;
+
         let pageNumber = parseInt(req.query.pageNumber);
         let recordCount = parseInt(req.query.recordCount);
         let searchString = req.query.searchString;

@@ -1,3 +1,11 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -107,7 +115,7 @@
 				<div id="nameUpdateError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<input id="inputDateOfBirthUpdate" class="input" type="text" name="dateOfBirthUpdate" oninput="checkInputData('inputDateOfBirthUpdate', constraint.dateOfBirth, 'dateOfBirthUpdateError')">
+					<!-- <input id="inputDateOfBirthUpdate" class="input" type="text" name="dateOfBirthUpdate" oninput="checkInputData('inputDateOfBirthUpdate', constraint.dateOfBirth, 'dateOfBirthUpdateError')"> -->
 				</div>
 				<div id="dateOfBirthUpdateError" class="divReportError"></div>
 				<div class="inputElement">
@@ -150,7 +158,15 @@
 				<div id="nameInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')">
+					<!-- <input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')"> -->
+					<div class='input-group date' id='datetimepicker1' style="width: 53%;
+    float: right;">
+						<input type='text' class="form-control" id="inputDateOfBirthInsert" />
+						<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					 </div>
+				 
 				</div>
 				<div id="dateOfBirthInsertError" class="divReportError"></div>
 				<div class="inputElement">

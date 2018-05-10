@@ -10,6 +10,10 @@ var dateOfBirthOrder;
 var genderOrder;
 var addressOrder;
 
+$(document).ready(function() {
+	$('#datetimepicker1').datetimepicker();
+
+})
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {

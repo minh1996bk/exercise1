@@ -79,15 +79,15 @@ function renderStudents(students) {
 		<tr>
 			
 			<td style="padding: 5px;">${students[i].mssv}</td>
-			<td>${students[i].name}</td>
+			<td><p class="like-link" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">${students[i].name}</p></td>
 			<td>${formatDate(students[i].dateOfBirth)}</td>
 			<td>${students[i].gender}</td>
 			<td>${students[i].address}</td>
 			<td>
-				<button class="btn" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">
+				<button class="btn in-row" data-toggle="modal" data-target="#divUpdateModal" onclick="showUpdateWindow(${students[i].mssv})">
 					<i class="glyphicon glyphicon-pencil"></i>Chỉnh sửa
 				</button>
-				<button class="btn" data-toggle="modal" data-target="#divDeleteModal" onclick="showDeleteWindow(${students[i].mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
+				<button class="btn in-row" data-toggle="modal" data-target="#divDeleteModal" onclick="showDeleteWindow(${students[i].mssv})"><i class="glyphicon glyphicon-remove"></i>Xóa</button>
 			</td>
 		</tr>
 		`;
@@ -375,6 +375,8 @@ async function searchStudent() {
 })();
 
 function thayDoiIconKhiSapXep(iconId, _sortOrder) {
+	let iconIds = ['icon-mssv', 'icon-name', 'icon-dob', 'icon-gender', 'icon-address'];
+	iconIds
 	let oldIconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-up' : 'glyphicon-circle-arrow-down';
 	let iconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-down' : 'glyphicon-circle-arrow-up';
 	$(`#${iconId}`).removeClass(oldIconClass);

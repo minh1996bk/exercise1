@@ -392,3 +392,16 @@ function thayDoiIconKhiSapXep(iconId, _sortOrder) {
 	$(`#${iconId}`).addClass(iconClass);
 
 }
+function showDiv(){
+	let val = document.getElementById("boloc").value;
+	let divIds = ['masv','ngaysinh','gioitinh', 'diachi'];
+	divIds.forEach(divId => {
+		if (divId == val) {
+			document.getElementById(divId).style.display = "block";
+		} else {
+			document.getElementById(divId).style.display = "none";
+		}
+	})
+
+	
+}

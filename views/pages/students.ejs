@@ -1,10 +1,5 @@
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,20 +10,64 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div id="main">
-	<header class="center"><h2>Hệ thống quản lý sinh viên</h2></header>
+	<header class="center"><h1 style="color:#36bf36">Hệ thống quản lý sinh viên</h1></header>
 	<div id="content">
 		<div id="divInfo" class="center">
 			<p>Đang xem <span id="spanInfo"></span></p>
 		</div>
-		<div id="divInsert" class="center">
+		<div id="divInsert" >
 			
-			<button type="button" class="btn" data-toggle="modal" data-target="#divInsertModal">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#divInsertModal" style="margin-left: 73px;">
 				<i class="glyphicon glyphicon-plus"></i>Thêm sinh viên
-			</button>
+			</button><br>
+			<div id="loc">
+				<label for="">Bộ lọc</label>
+				<select name="boloc" id="boloc" onchange=showDiv();>
+					<option></option>
+					<option value="masv">Mã sinh viên</option>
+					<option value="ngaysinh">Ngày sinh</option>
+					<option value="masv">Giới tính</option>
+					<option value="diachi">Địa chỉ</option>
+				</select>
+				
+				<div id="masv" style="display: none;">
+					<label for="">Giá trị msv</label>
+					<select name="masv" id="">
+						<option value="asc">asc</option>
+						<option value="dsc">dsc</option>
+					</select>
+				</div>
+				<div id="ngaysinh" style="display: none;">
+					<label for="">Giá trị ngay sinh</label>
+					<select name="masv" id="">
+						<option value="asc">asc</option>
+						<option value="dsc">dsc</option>
+					</select>
+				</div>
+				<div id="gioitinh" style="display: none;">
+					<label for="">Giá trị msv</label>
+					<select name="masv" id="">
+						<option value="asc">asc</option>
+						<option value="dsc">dsc</option>
+					</select>
+				</div>
+				<div id="diachi" style="display: none;">
+					<label for="">Giá trị địa chỉ</label>
+					<select name="dc" id="">
+						<option value="asc11">asc</option>
+						<option value="dsc11">dsc</option>
+					</select>
+				</div>
+				
+			</div>
 		</div>
-		<div id="divSearch" class="center">
-			<input type="text" style="padding-left: 5px;" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
-			<button id="btnSearch" onclick="searchStudent()" style="padding: 5px;">Tìm kiếm<i style="margin: 5px;" class="glyphicon glyphicon-search"></i></button>
+		<div id="divSearch"  style="width: 23%;
+		float: right;">
+			<input type="text" style="    padding-left: 5px;
+			padding: 10px;
+			border-color: green;
+		" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
+			<button class="btn btn-success"  id="btnSearch" onclick="searchStudent()" style="padding: 5px;">Tìm kiếm<i style="margin: 5px;" class="glyphicon glyphicon-search"></i></button>
 			
 		</div>
 		<div id="divTable">
@@ -115,7 +154,7 @@
 				<div id="nameUpdateError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-					<!-- <input id="inputDateOfBirthUpdate" class="input" type="text" name="dateOfBirthUpdate" oninput="checkInputData('inputDateOfBirthUpdate', constraint.dateOfBirth, 'dateOfBirthUpdateError')"> -->
+					<input id="inputDateOfBirthUpdate" class="input" type="text" name="dateOfBirthUpdate" oninput="checkInputData('inputDateOfBirthUpdate', constraint.dateOfBirth, 'dateOfBirthUpdateError')">
 				</div>
 				<div id="dateOfBirthUpdateError" class="divReportError"></div>
 				<div class="inputElement">

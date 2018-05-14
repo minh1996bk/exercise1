@@ -1,5 +1,5 @@
 module.exports = async function(req, res, next) {
-    if (!req.query || !req.query.mssv) {
+    if (!req.body.recordCount || !req.body.pageNumber) {
         return res.badRequest();
     }
     return next();

@@ -39,7 +39,7 @@ module.exports.routes = {
 
   'GET /create-data': {action: 'create-data'},
   'GET /getStudents': 'StudentController.getStudents',
-
+  'get /searchPattern' : 'StudentController.searchPattern',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

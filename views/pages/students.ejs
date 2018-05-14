@@ -1,10 +1,12 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <div id="main">
 	<header class="center"><h1 style="color:#36bf36">Hệ thống quản lý sinh viên</h1></header>
 	<div id="content">
@@ -18,7 +20,7 @@
 			<div id="loc">
 				<label>Bộ lọc</label>
 				<select name="boloc" id="boloc" onchange=showDiv();>
-					<option></option>
+					<option>Chọn trường lọc</option>
 					<option value="masv">Mã sinh viên</option>
 					<option value="ngaysinh">Ngày sinh</option>
 					<option value="gioitinh">Giới tính</option>
@@ -27,36 +29,36 @@
 				
 				<div id="masv" style="display: none;">
 					<label for="">Giá trị </label>
-					<select name="masv" id="">
-						<option value="asc">Tăng dần</option>
-						<option value="dsc">Giảm dần</option>
+					<select name="masv" id="mssvSelect" onchange="filterByMssv()">
+						<option value="ASC">Tăng dần</option>
+						<option value="DESC">Giảm dần</option>
 					</select>
 				</div>
 				<div id="ngaysinh" style="display: none;">
 					<label for="">Giá trị</label>
-					<select name="ngaysinh" id="">
-						<option value="asc">Tăng dần</option>
-						<option value="dsc">Giảm dần</option>
+					<select name="ngaysinh" id="dobSelect" onchange="filterByDob()">
+						<option value="ASC">Tăng dần</option>
+						<option value="DESC">Giảm dần</option>
 					</select>
 				</div>
 				<div id="gioitinh" style="display: none;">
 					<label for="">Giá trị</label>
-					<select name="gioitinh" id="">
+					<select name="gioitinh" id="genderSelect" onchange="filterByGender()">
 						<option value="Nam">Nam</option>
-						<option value="Nu">Nữ</option>
+						<option value="Nữ">Nữ</option>
 					</select>
 				</div>
 				<div id="diachi" style="display: none;">
 					<label for="">Giá trị</label>
-					<select name="dc" id="">
-						<option value="asc">Tăng dần</option>
-						<option value="dsc">Giảm dần</option>
+					<select name="dc" id="addressSelect" onchange="filterByAddress()">
+						<option value="ASC">Tăng dần</option>
+						<option value="DESC">Giảm dần</option>
 					</select>
 				</div>
 				
 			</div>
 		</div>
-		<div id="divSearch"  style="width: 23%;float: right;">
+		<div id="divSearch" class="ui-widget" style="width: 23%;float: right;">
 			<input type="text" style="padding-left: 5px; padding: 10px;border-color: green;" id="inputSearch" placeholder="Tìm theo tên, mã sinh viên..">
 			<button class="btn btn-success"  id="btnSearch" onclick="searchStudent()" style="padding: 5px;">
 				Tìm kiếm
@@ -187,14 +189,7 @@
 				<div id="nameInsertError" class="divReportError"></div>
 				<div class="inputElement">
 					<label>Ngày sinh</label>
-						<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')">
-		
-						<input type='text' class="form-control" id="inputDateOfBirthInsert" />
-						<span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-						</span>
-					 </div>
-				 
+					<input id="inputDateOfBirthInsert" class="input" type="text" name="dateOfBirthInsert" oninput="checkInputData('inputDateOfBirthInsert', constraint.dateOfBirth, 'dateOfBirthInsertError')">
 				</div>
 				<div id="dateOfBirthInsertError" class="divReportError"></div>
 				<div class="inputElement">

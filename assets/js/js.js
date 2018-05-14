@@ -3,6 +3,10 @@ var totalStudent;
 var currentPage = 1;
 var searchString = "";
 var recordCount = 10;
+var sortOrder = "";
+var sortField = "";
+var selectField = "";
+var selectValue = "";
 
 var mssvOrder;
 var nameOrder;
@@ -10,10 +14,6 @@ var dateOfBirthOrder;
 var genderOrder;
 var addressOrder;
 
-$(document).ready(function() {
-	$('#datetimepicker1').datetimepicker();
-
-})
 var constraint = {
 	mssv: [
 		function isEightDigits(val) {
@@ -61,6 +61,10 @@ function getStudents(criteria) {
 		pageNumber=${criteria.pageNumber || currentPage}
 		&recordCount=${criteria.recordCount || recordCount}
 		&searchString=${criteria.searchString || searchString}
+		&sortField=${criteria.sortField || sortField}
+		&sortOrder=${criteria.sortOrder || sortOrder}
+		&selectField=${criteria.selectField || selectField}
+		&selectValue=${criteria.selectValue || selectValue}
 	`;
 	return $.get(url);
 }
@@ -72,7 +76,7 @@ function getStudentByMssv(mssv) {
 
 function formatDate(dateString) {
 	let arr = dateString.split('-');
-	return [arr[2], arr[1], arr[0]].join('-');
+	return [arr[2], arr[1], arr[0]].join('/');
 }
 
 function renderStudents(students) {
@@ -113,6 +117,7 @@ function renderNumberPage(totalStudent, currentPage) {
 	startIndex = endIndex == totalPage ? totalPage - 9 : startIndex;
 	prev = currentPage - 1 >= 1 ? currentPage -1 : 1;
 	next = currentPage + 1 <= totalPage ? currentPage + 1 : totalPage;
+	startIndex = startIndex >= 1 ? startIndex : 1;
 	let htm;
 	htm = `
 		<ul>
@@ -364,6 +369,7 @@ async function searchStudent() {
 	let response = await getStudents();
 	students = response.students;
 	totalStudent = response.totalStudent;
+	console.log(students);
 	renderStudents(response.students);
 	renderNumberPage(response.totalStudent, 1);
 
@@ -406,3 +412,144 @@ function showDiv(){
 
 	
 }
+
+async function filterByMssv() {
+
+	let _sortOrder = document.getElementById('mssvSelect').value;
+	let criteria = {
+		pageNumber: 1,
+		recordCount: 10,
+		sortOrder: _sortOrder,
+		sortField: 'mssv'
+	}
+	sortField = 'mssv';
+	sortOrder = _sortOrder;
+	let data = await getStudents(criteria);
+	students = data.students;
+	totalStudent = data.totalStudent;
+	
+	renderStudents(data.students);
+	renderNumberPage(data.totalStudent, currentPage);
+}
+
+async function filterByGender() {
+	let _selectValue = document.getElementById('genderSelect').value;
+	sortField = "";
+	sortOrder = "";
+	let criteria = {
+		pageNumber: 1,
+		recordCount: 10,
+		selectField: 'gender',
+		selectValue: _selectValue,
+		searchString: searchString,
+	}
+	let data = await getStudents(criteria);
+	students = data.students;
+	totalStudent = data.totalStudent;
+	
+	renderStudents(data.students);
+	renderNumberPage(data.totalStudent, currentPage);
+}
+
+async function filterByName() {
+	let _selectValue = document.getElementById('nameSelect').value;
+	sortField = "";
+	sortOrder = "";
+	let criteria = {
+		pageNumber: 1,
+		recordCount: 10,
+		selectField: 'name',
+		selectValue: _selectValue,
+		searchString: searchString,
+	}
+	let data = await getStudents(criteria);
+	students = data.students;
+	totalStudent = data.totalStudent;
+	
+	renderStudents(data.students);
+	renderNumberPage(data.totalStudent, currentPage);
+}
+
+async function filterByDob() {
+	let _sortOrder = document.getElementById('dobSelect').value;
+	sortField = "dateOfBirth";
+	sortOrder = _sortOrder;
+	selectField = "";
+	selectValue = "";
+	let criteria = {
+		pageNumber: 1,
+		recordCount: 10,
+		selectField: 'dateOfBirth',
+		sortField: sortField,
+		sortOrder: sortOrder
+	}
+	
+	let data = await getStudents(criteria);
+	students = data.students;
+	totalStudent = data.totalStudent;
+	
+	renderStudents(data.students);
+	renderNumberPage(data.totalStudent, currentPage);
+}
+
+async function filterByAddress() {
+	let _sortOrder = document.getElementById('addressSelect').value;
+	sortField = "address";
+	sortOrder = _sortOrder;
+	selectField = "";
+	selectValue = "";
+	let criteria = {
+		pageNumber: 1,
+		recordCount: 10,
+		selectField: 'dateOfBirth',
+		sortField: sortField,
+		sortOrder: sortOrder
+	}
+
+	let data = await getStudents(criteria);
+	students = data.students;
+	totalStudent = data.totalStudent;
+	
+	renderStudents(data.students);
+	renderNumberPage(data.totalStudent, currentPage);
+}
+
+$(document).ready(function() {
+	function goiYResult(inputId) {
+		let key = 0;
+		let isNumberPattern;
+		$(`#${inputId}`).on('input', function() {
+			let time = new Date().getTime();
+			key = time;
+			setTimeout(function() {
+				if (time === key) {
+			
+					let searchPattern = $(`#${inputId}`).val();
+					isNumberPattern = /\d/.test(searchPattern);
+			
+					io.socket.get('/searchPattern', {
+						searchPattern: searchPattern, 
+						isNumberPattern: isNumberPattern
+					}, (res, jw) => {
+						//just ignore
+					}) 
+				}
+			}, 200);
+		});
+	
+		io.socket.on('searchPattern', data => {
+
+			let results;
+			if (data.isNumberPattern) {
+				results = data.results.map(result => result.mssv);
+			} else {
+				results = data.results.map(result => result.name);
+			}
+			$(`#${inputId}`).autocomplete({
+				source: results,
+			})
+		});
+	}
+
+	goiYResult('inputSearch');
+})

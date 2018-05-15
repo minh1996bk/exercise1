@@ -74,16 +74,29 @@
 							Mã Sinh Viên
 						</div>
 						<div id="mssv" class="inTh">
-							<button class="btnChangeOrder" onclick="sapXepMssv()">
-								<i id="icon-mssv" class="glyphicon glyphicon-circle-arrow-up"></i>
+							<button class="sort-btn" onclick="onOrderStateChange('mssv', 'DESC', this)">
+								<i>
+									<img src="/images/descending.png" class="sort-icon">
+								</i>
+							</button>
+							<button class="sort-btn" onclick="onOrderStateChange('mssv', 'ASC', this)">
+								<i>
+									<img src="/images/ascending.png" class="sort-icon">
+								</i>
 							</button>
 						</div>
 					</th>
 					<th class="headColumn">
 						<div class="inTh">Họ và Tên</div>
 						<div id="name" class="inTh">
-							<button class="btnChangeOrder" onclick="sapXepTen()">
-								<i id="icon-name" class="glyphicon glyphicon-circle-arrow-up">										
+							<button class="sort-btn" onclick="onOrderStateChange('name', 'DESC', this)">
+								<i>
+									<img src="/images/descending.png" class="sort-icon">
+								</i>
+							</button>
+							<button class="sort-btn" onclick="onOrderStateChange('name', 'ASC', this)">
+								<i>
+									<img src="/images/ascending.png" class="sort-icon">
 								</i>
 							</button>
 						</div>
@@ -91,24 +104,45 @@
 					<th class="headColumn">
 						<div class="inTh">Ngày sinh</div>
 						<div id="dateOfBirth" class="inTh">
-							<button class="btnChangeOrder" onclick="sapXepNgaySinh()">
-									<i id="icon-dob" class="glyphicon glyphicon-circle-arrow-up"></i>
+							<button class="sort-btn" onclick="onOrderStateChange('dateOfBirth', 'DESC', this)">
+								<i>
+									<img src="/images/descending.png" class="sort-icon">
+								</i>
+							</button>
+							<button class="sort-btn" onclick="onOrderStateChange('dateOfBirth', 'ASC', this)">
+								<i>
+									<img src="/images/ascending.png" class="sort-icon">
+								</i>
 							</button>
 						</div>
 					</th>
 					<th class="headColumn">
 						<div class="inTh">Giới tính</div>
 						<div id="gender" class="inTh">
-							<button class="btnChangeOrder" onclick="sapXepGioiTinh()">
-								<i id="icon-gender" class="glyphicon glyphicon-circle-arrow-up"></i>
+							<button class="sort-btn" onclick="onOrderStateChange('gender', 'DESC', this)">
+								<i>
+									<img src="/images/descending.png" class="sort-icon">
+								</i>
+							</button>
+							<button class="sort-btn" onclick="onOrderStateChange('gender', 'ASC', this)">
+								<i>
+									<img src="/images/ascending.png" class="sort-icon">
+								</i>
 							</button>
 						</div>
 					</th>
 					<th class="headColumn">
 						<div class="inTh">Địa chỉ</div>
 						<div id="address" class="inTh">
-							<button class="btnChangeOrder" onclick="sapXepDiaChi()">
-								<i id="icon-address" class="glyphicon glyphicon-circle-arrow-up"></i>
+							<button class="sort-btn" onclick="onOrderStateChange('address', 'DESC', this)">
+								<i>
+									<img src="/images/descending.png" class="sort-icon">
+								</i>
+							</button>
+							<button class="sort-btn" onclick="onOrderStateChange('address', 'ASC', this)">
+								<i>
+									<img src="/images/ascending.png" class="sort-icon">
+								</i>
 							</button>
 						</div>
 					</th>

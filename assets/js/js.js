@@ -143,7 +143,7 @@ function renderNumberPage(totalStudent, currentPage) {
 		</ul>
 	`;
 	let spanInfo = $('#spanInfo');
-	spanInfo.text(` ${currentPage * 10 <= totalStudent ? currentPage * 10 : totalStudent}/${totalStudent}`);
+	spanInfo.text(` ${currentPage * 10 <= totalStudent ? currentPage * 10 : totalStudent} / ${totalStudent}`);
 	let divPageNumber = $('#divPageNumber');
 	divPageNumber.empty();
 	divPageNumber.append(htm);
@@ -318,7 +318,14 @@ function sapXepDiaChi() {
 	thayDoiIconKhiSapXep('icon-address', addressOrder);
 }
 
-function onOrderStateChange(_sortField, _sortOrder) {
+function onOrderStateChange(_sortField, _sortOrder, btn) {
+	let btns = document.getElementsByClassName('sort-btn');
+
+	for (let i = 0; i < btns.length; i ++ ) {
+		btns[i].style.backgroundColor = "inherit";
+	}
+	
+	btn.style.backgroundColor = "white";
 	students = students.sort((st1, st2) => {
 		if (_sortOrder == 'ASC') {
 			if (st1[_sortField] > st2[_sortField]) return 1;
@@ -331,8 +338,7 @@ function onOrderStateChange(_sortField, _sortOrder) {
 			if (st1[_sortField] > st2[_sortField]) return -1;
 		}
 	})
-	
-	
+		
 	renderStudents(students);
 	renderNumberPage(totalStudent, currentPage);
 }
@@ -384,20 +390,6 @@ async function searchStudent() {
 	renderNumberPage(data.totalStudent, currentPage);
 })();
 
-function thayDoiIconKhiSapXep(iconId, _sortOrder) {
-	let iconIds = ['icon-mssv', 'icon-name', 'icon-dob', 'icon-gender', 'icon-address'];
-	document.getElementById(`${iconId}`).style.backgroundColor = 'black';
-	iconIds.forEach(id => {
-		if (id != iconId) {
-			document.getElementById(`${id}`).style.backgroundColor = 'initial';
-		}
-	})
-	let oldIconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-up' : 'glyphicon-circle-arrow-down';
-	let iconClass = _sortOrder == 'ASC' ? 'glyphicon-circle-arrow-down' : 'glyphicon-circle-arrow-up';
-	$(`#${iconId}`).removeClass(oldIconClass);
-	$(`#${iconId}`).addClass(iconClass);
-
-}
 function showDiv(){
 	let val = document.getElementById("boloc").value;
 	// console.log(val);
